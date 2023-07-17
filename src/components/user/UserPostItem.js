@@ -1,19 +1,17 @@
-import {Button, Container, FormControl, Image, ListGroup, Modal} from "react-bootstrap";
-import User_f from "../../static/images/nonuser_f.svg";
-import User_m from "../../static/images/nonuser_m.svg";
-import placeholder_f from "../../static/images/user_placeholder_f.svg";
-import placeholder_m from "../../static/images/user_placeholder_m.svg";
-import Therapist_f from "../../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../../static/images/dr_placeholder_m.svg";
+import { TextareaAutosize } from "@mui/material";
+import dayjs from "dayjs";
+import { useContext, useEffect, useState } from "react";
+import { Button, Container, FormControl, Image, ListGroup, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import UserContext from "../../UserContext";
 import Admin_f from "../../static/images/admin_placeholder_f.svg";
 import Admin_m from "../../static/images/admin_placeholder_m.svg";
+import Therapist_f from "../../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../../static/images/dr_placeholder_m.svg";
+import User_f from "../../static/images/nonuser_f.svg";
+import User_m from "../../static/images/nonuser_m.svg";
 import Others from "../../static/images/other_placeholder.svg";
-import {Link, useLocation, useNavigate} from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import UserContext from "../../UserContext";
-import dayjs from "dayjs";
-import Swal from "sweetalert2";
-import { TextareaAutosize } from "@mui/material";
 
 export default function UserPostItem({postProp}){
 
@@ -266,8 +264,8 @@ export default function UserPostItem({postProp}){
                     <Container fluid >
                         <div className={"d-flex flex-grow-1 py-2 align-items-baseline"}>
                             <Button className={"me-2 bg-light"} onClick={e => {nav(`/post/${p_id}`)}}><i className={"bi bi-arrows-angle-expand "}></i></Button>
-                            <Button className={"me-2 bg-light"} onClick={openModal}><i className={"bi bi-pencil "}></i> Edit</Button>
-                            <Button className={"me-2 bg-light"} onClick={deletePost}><i className={"bi bi-trash "}></i> Delete</Button>
+                            {user.id === user_id && <Button className={"me-2 bg-light"} onClick={openModal}><i className={"bi bi-pencil "}></i> Edit</Button>}
+                            {user.id === user_id && <Button className={"me-2 bg-light"} onClick={deletePost}><i className={"bi bi-trash "}></i> Delete</Button>}
 
                             <div className={"flex-grow-1"}></div>
                         </div>

@@ -1,17 +1,12 @@
-import {Col, Image, ListGroupItem, Row} from "react-bootstrap";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
+import dayjs from "dayjs";
+import { Col, Image, ListGroupItem, Row } from "react-bootstrap";
 import Therapist_f from "../static/images/dr_placeholder_f.svg";
 import Therapist_m from "../static/images/dr_placeholder_m.svg";
-import Admin_f from "../static/images/admin_placeholder_f.svg";
-import Admin_m from "../static/images/admin_placeholder_m.svg";
 import Others from "../static/images/other_placeholder.svg";
-import ContactItem from "./ContactItem";
-import dayjs from "dayjs";
 
 export default function ConsultationCard({bookingProp}){
 
-    const { prefix, last_name, suffix, gender, date, time, confirmation, denied, consultation_type } = bookingProp
+    const { prefix, last_name, gender, date, time, consultation_type } = bookingProp
 
     const humanizedDate = dayjs(date, 'YYYY-MM-DD').format('MMMM DD, YYYY (dddd)')
     const humanizedTime = dayjs(time, 'HH:mm:ss').format('hh:mm A')

@@ -1,11 +1,11 @@
-import '../index.css';
+import { useEffect, useState } from "react";
+import { Col, Container, ListGroup, Row, Spinner } from "react-bootstrap";
+import { useParams } from 'react-router-dom';
 import AppNavbar from "../components/AppNavbar";
-import RightSidebar from "../components/RightSidebar";
-import {Col, Container, ListGroup, ListGroupItem, Row, Spinner} from "react-bootstrap";
-import { useParams } from 'react-router-dom'
-import {useEffect, useState} from "react";
-import PostCards from "../components/PostCards";
 import CommentItem from "../components/CommentItem";
+import PostCards from "../components/PostCards";
+import RightSidebar from "../components/RightSidebar";
+import '../index.css';
 
 export default function PostDetail() {
     const { post_id } = useParams()

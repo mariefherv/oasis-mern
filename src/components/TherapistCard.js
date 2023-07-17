@@ -1,22 +1,18 @@
-import {Button, Col, Image, ListGroupItem, Modal, ModalBody, ModalHeader, ModalTitle, Row, Form } from "react-bootstrap";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
+import { FormControl, FormGroup, InputLabel, MenuItem, Select } from "@mui/material";
+import { DateCalendar, DateField } from "@mui/x-date-pickers";
+import { parse } from "date-fns";
+import dayjs from 'dayjs';
+import { useEffect, useState } from "react";
+import { Button, Col, Form, Image, ListGroupItem, Modal, ModalBody, ModalTitle, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import Therapist_f from "../static/images/dr_placeholder_f.svg";
 import Therapist_m from "../static/images/dr_placeholder_m.svg";
-import Admin_f from "../static/images/admin_placeholder_f.svg";
-import Admin_m from "../static/images/admin_placeholder_m.svg";
+import fb from '../static/images/facebook.svg';
+import lnk from '../static/images/linkedin.svg';
 import Others from "../static/images/other_placeholder.svg";
 import thumbs_up from '../static/images/thumbs_up.svg';
-import fb from '../static/images/facebook.svg';
 import twt from '../static/images/twitter.svg';
-import lnk from '../static/images/linkedin.svg';
-import {useState} from "react";
-import dayjs from 'dayjs';
-import { useEffect } from "react";
-import { DateCalendar, DateField } from "@mui/x-date-pickers";
-import { parse, setDay } from "date-fns";
-import Swal from "sweetalert2";
-import { FormGroup, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export default function TherapistCard({therapistProp}){
 
@@ -195,13 +191,18 @@ export default function TherapistCard({therapistProp}){
             return true; // Enable the date
         };
 
+        const location = useNavigate()
+
+        const goTo = (link) => {
+            location(link)
+        }
 
     return (
         <ListGroupItem className={'border-0 bg-light rounded-4 border border-1 my-2'}>
         <Row className={'p-4'}>
             <Col className={'col-3 d-flex flex-column align-items-center justify-content-center'}>
                 <Image src={gender === 'male' ? Therapist_m : gender === 'female' ? Therapist_f : Others}
-                className={'p-2 therapist-avatar'}></Image>
+                className={'p-2 therapist-avatar'} onClick={e => goTo('/user/'+user_therapist_id)}></Image>
                 <Row>
                     {fb_link && <Col><a href={"https://"+fb_link} target="_blank" rel="noopener noreferrer"><Image src={fb}/></a></Col>}
                     {twt_link && <Col><a href={"https://"+twt_link} target="_blank" rel="noopener noreferrer"><Image src={twt}/></a></Col>}

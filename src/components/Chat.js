@@ -1,19 +1,14 @@
-import {Col, Container, Image, ListGroupItem, Row} from "react-bootstrap";
-import User_f from "../static/images/nonuser_f.svg";
-import User_m from "../static/images/nonuser_m.svg";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
-import Therapist_f from "../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import dayjs from "dayjs";
+import { useContext } from "react";
+import { Col, Image, ListGroupItem, Row } from "react-bootstrap";
+import UserContext from "../UserContext";
 import Admin_f from "../static/images/admin_placeholder_f.svg";
 import Admin_m from "../static/images/admin_placeholder_m.svg";
+import Therapist_f from "../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import User_f from "../static/images/nonuser_f.svg";
+import User_m from "../static/images/nonuser_m.svg";
 import Others from "../static/images/other_placeholder.svg";
-import ContactItem from "./ContactItem";
-import {useState} from "react";
-import { useContext } from "react";
-import UserContext from "../UserContext";
-import { useEffect } from "react";
-import dayjs from "dayjs";
 
 export default function Chat({chatProp}){
 
@@ -51,8 +46,7 @@ export default function Chat({chatProp}){
         <ListGroupItem className={"border-0"}>
             {isUser && <Row className={" d-flex align-items-center   flex-row-reverse justify-content-end "}>
                 <Col md={2} className={"text-center"}>
-                <Image src={user.role === 'User' ? user.gender === 'male' ? placeholder_m : user.gender === 'female' ? placeholder_f : Others :
-                imageMap[imageName] }className={"img-fluid"}></Image></Col>
+                <Image className='chat-avatar' src={imageMap[imageName]} /></Col>
                 <Col md={8} className={"text-end d-flex flex-column align-items-end justify-content-end"}>
                     <Row className="d-flex">
                         <p className="p-2 border border-1 rounded-5 fit-content m-0"> {content} </p>
@@ -66,8 +60,7 @@ export default function Chat({chatProp}){
 
             </Row>}
             {!isUser && <Row className={" d-flex align-items-center   "}>
-                <Col md={2} className={"text-center"}><Image src={`${sender_role}.${sender_gender === 'male' ? '_m' : sender_gender === 'female' ? '_f' : '_others'}`}
-                className={"img-fluid"}></Image></Col>
+                <Col md={2} className={"text-center"}><Image className='chat-avatar' src={imageMap[imageName]} /></Col>
                 <Col md={8} className={"text-end d-flex flex-column align-items-start justify-content-end"}>
                     <Row className="d-flex">
                         <p className="p-2 border border-1 rounded-5 fit-content m-0"> {content} </p>

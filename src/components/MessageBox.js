@@ -1,19 +1,18 @@
-import '../index.css';
+import { useContext, useEffect, useState } from 'react';
 import {
+    Button,
     Container,
-    ListGroup,
-    Button, Image
+    Image,
+    ListGroup
 } from 'react-bootstrap';
-import Chat from "../components/Chat";
-import TextareaAutosize from "react-textarea-autosize";
-import send from "../static/images/send.svg";
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import UserContext from '../UserContext';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import Swal from 'sweetalert2'
-import { useContext } from 'react';
+import TextareaAutosize from "react-textarea-autosize";
+import Swal from 'sweetalert2';
+import UserContext from '../UserContext';
+import Chat from "../components/Chat";
+import '../index.css';
+import send from "../static/images/send.svg";
 
 export default function MessageBox({status, blocked_by}) {
     const { user } = useContext(UserContext)

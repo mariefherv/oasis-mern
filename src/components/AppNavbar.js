@@ -1,12 +1,11 @@
-import {Link, NavLink,} from 'react-router-dom';
-import {Navbar, Nav, Row, Col, Button, ListGroup, Modal, Container, Image} from 'react-bootstrap';
-import logo from '../static/images/logo.png'
-import telephone from '../static/images/telephone.svg'
+import { useContext, useState } from "react";
+import { Button, Col, Image, ListGroup, Modal, Navbar, Row } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
-import {useState} from "react";
-import HotlineItem from "./HotlineItem";
-import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import UserContext from '../UserContext';
+import logo from '../static/images/logo.png';
+import telephone from '../static/images/telephone.svg';
+import HotlineItem from "./HotlineItem";
 
 export default function AppNavbar() {
 	const { user } = useContext(UserContext)
@@ -18,9 +17,10 @@ export default function AppNavbar() {
 	})
 
 	return (
-		<Navbar className="m-0 d-flex flex-column sticky-top vh-100 overflow-auto   ">
-			{isDesktopOrLaptop && <Row>
-				<Navbar.Brand as={Link} to="/home" className='d-flex flex-column align-items-center justify-content-center  text-decoration-none'>
+		<Navbar className="m-0 d-flex flex-column sticky-top vh-100 overflow-auto navbar">
+			{isDesktopOrLaptop && 
+			<Row>
+				<NavLink to="/home" className='d-flex flex-column align-items-center justify-content-center  text-decoration-none'>
 					<Row className='title '>
 						<Col className='p-0'>
 							<img src={logo}
@@ -36,22 +36,23 @@ export default function AppNavbar() {
 					<Row className='tagline '>
 						you are safe here
 					</Row>
-				</Navbar.Brand>
+				</NavLink>
 			</Row>}
-			<Nav className={"d-flex flex-column bg-light p-2 rounded-4 "}>
-				<NavLink to={'/home'} className='nav-links' >Community</NavLink>
-				{user.role === 'User' && <NavLink to={'/counselling'} className='nav-links'>Look for Support</NavLink>}
-				{user.role === 'Therapist' && <NavLink to={'/therapist'} className='nav-links'>Appointments</NavLink>}
-				{user.role === 'Admin' && <NavLink to={'/admin'} className='nav-links'>Admin</NavLink>}
-				{/*<NavLink to={'/blogs'} className='nav-links'>Blog</NavLink>*/}
-				<NavLink to={'/about'} className='nav-links'>About Us</NavLink>
-				{!isDesktopOrLaptop && <Nav.Item className='nav-links '>
-					VAWC Hotlines
-				</Nav.Item>
-				}
-			</Nav>
-			<div className='mt-2'></div>
-			<Col className={"d-flex flex-column bg-light rounded-4 p-4 align-items-center gradient "}>
+			<Row className='bg-light rounded-4 m-2 p-3'>
+					<NavLink to={'/home'} className='nav-links' >Community</NavLink>
+					{(user.role === 'User' || user.role === 'Admin') && <NavLink to={'/counselling'} className='nav-links'>Look for Support</NavLink>}
+					{user.role === 'Therapist' && <NavLink to={'/therapist'} className='nav-links'>Appointments</NavLink>}
+					{user.role === 'Admin' && <NavLink to={'/admin'} className='nav-links'>Admin</NavLink>}
+					{/*<NavLink to={'/blogs'} className='nav-links'>Blog</NavLink>*/}
+					<NavLink to={'/about'} className='nav-links'>About Us</NavLink>
+					{!isDesktopOrLaptop && <NavLink className='nav-links '>
+						VAWC Hotlines
+					</NavLink>
+					}
+			</Row>
+
+			<div className='d-flex flex-column flex-grow-1 mt-auto'></div>
+			<Col className={"d-flex flex-column  bg-light rounded-4 p-4 align-items-center gradient"}>
 				<Image src={telephone} className={"img-fluid ms-5"}></Image>
 				<h6 className={"fw-bold "}>24/7 Helpline</h6>
 				<p><small>Always to help you.</small></p>
@@ -90,16 +91,10 @@ export default function AppNavbar() {
 									hotlineNumber:"(036)266-3426"
 								}
 							}/>
-
-
 						</ListGroup>
 					</Modal.Body>
 				</Modal>
 			</Col>
-			
-			
-			
-
 		</Navbar>
 	)
 };

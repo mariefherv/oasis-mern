@@ -1,9 +1,9 @@
 
-import '../index.css';
-import {  Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
+import '../index.css';
 
 export default function Welcome() {
     // Media Queries for responsive UI
@@ -27,7 +27,6 @@ export default function Welcome() {
                     <Row className='justify-content-center'>
                         <h1 className='text-white fw-bold text-center'>
                             <Typewriter
-
                                 options={{
                                     strings: [
                                         'share stories.',

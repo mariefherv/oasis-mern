@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { Button, Container, ListGroup } from "react-bootstrap";
 import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import { Button, Container, ListGroup } from "react-bootstrap";
 
-const UserCommentItem = ({commentProp}) => {
+const UserCommentItem = ({commentProp, likePage}) => {
 
-    const { c_id, content, date_time, user_id, username, p_id, role, prefix, last_name, suffix } = commentProp
+    const { c_id, content, date_time, username, p_id, role, prefix, last_name, suffix } = commentProp
     const [title, setTitle] = useState(null)
 
     const [love, setLove] = useState(false)
@@ -90,7 +89,9 @@ const UserCommentItem = ({commentProp}) => {
                         <Container className="py-0 my-0">
                             <div className="d-flex flex-wrap">
                                 <i className="bi bi-chat pe-3"></i>
-                                <div className={""}><p>{role !== 'Therapist' ? `@${username}` : `${prefix ? prefix : ''} ${last_name} ${suffix ? suffix : ''}`} <span className="text-muted"> commented on <a href = {`/post/${p_id}`}>{title}</a></span></p></div>
+                                {likePage ? <div className={""}><p>{role !== 'Therapist' ? `@${username}'s` : `${prefix ? prefix : ''} ${last_name} ${suffix ? suffix : ''}'s`} <span className="text-muted"> comment on <a href = {`/post/${p_id}`}>{title}</a></span></p></div>
+                                :
+                                <div className={""}><p>{role !== 'Therapist' ? `@${username}` : `${prefix ? prefix : ''} ${last_name} ${suffix ? suffix : ''}`} <span className="text-muted"> commented on <a href = {`/post/${p_id}`}>{title}</a></span></p></div>}
                                 <Container className={"d-flex w-100 p-2 mb-1"}>
                                 {love ?
                                 <div className={"pe-3 ps-2 text-center"} onClick={unlikeComment}>

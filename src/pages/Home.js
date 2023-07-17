@@ -1,17 +1,16 @@
 
-import '../index.css';
-import { useContext, useState } from 'react';
-import {Row, Col, Container, Offcanvas, Form, Spinner, FormSelect} from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive'
-import AppNavbar from '../components/AppNavbar';
-import toggle from '../static/images/hamburger-menu.svg'
-import PostCards from '../components/PostCards';
-import CreatePost from '../components/CreatePost';
-import RightSidebar from '../components/RightSidebar';
-import { useEffect } from 'react';
-import { useLocation, useNavigate} from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Col, Container, FormSelect, Offcanvas, Row, Spinner } from 'react-bootstrap';
+import { useMediaQuery } from 'react-responsive';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
+import AppNavbar from '../components/AppNavbar';
+import CreatePost from '../components/CreatePost';
+import PostCards from '../components/PostCards';
+import RightSidebar from '../components/RightSidebar';
 import { unblockContact } from '../functions/contactFunctions';
+import '../index.css';
+import toggle from '../static/images/hamburger-menu.svg';
 
 export default function Home() {
     const isDesktopOrLaptop = useMediaQuery({

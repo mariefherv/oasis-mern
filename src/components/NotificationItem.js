@@ -1,27 +1,23 @@
-import { ListGroupItem, Image, Button, Dropdown } from "react-bootstrap";
-import User_f from "../static/images/nonuser_f.svg";
-import User_m from "../static/images/nonuser_m.svg";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
-import Therapist_f from "../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import { useContext, useEffect, useState } from "react";
+import { Button, Dropdown, Image, ListGroupItem } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../UserContext";
+import { confirmContact, declineContact } from "../functions/contactFunctions";
 import Admin_f from "../static/images/admin_placeholder_f.svg";
 import Admin_m from "../static/images/admin_placeholder_m.svg";
+import Therapist_f from "../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import User_f from "../static/images/nonuser_f.svg";
+import User_m from "../static/images/nonuser_m.svg";
 import Others from "../static/images/other_placeholder.svg";
-import ContactItem from "./ContactItem";
-import { Link, useNavigate } from "react-router-dom";
-import { confirmContact } from "../functions/contactFunctions";
-import { declineContact } from "../functions/contactFunctions";
-import { useState } from "react";
-import { useContext } from "react";
-import UserContext from "../UserContext";
-import { useEffect } from "react";
+import placeholder_f from "../static/images/user_placeholder_f.svg";
+import placeholder_m from "../static/images/user_placeholder_m.svg";
 
 const NotificationItem = ({notificationProp, modal}) => {
 
     const { user, setUser } = useContext(UserContext)
 
-    const { user_id, triggered_by, notification_id, triggered_by_username, type, marked_read, contact_id, post_id, like_count, user_username, comment_id, comment_count, prefix, last_name, triggered_by_gender, triggered_by_role } = notificationProp
+    const { triggered_by, notification_id, triggered_by_username, type, marked_read, contact_id, post_id, like_count, user_username, comment_id, comment_count, prefix, last_name, triggered_by_gender, triggered_by_role } = notificationProp
 
     const [new_type, setNewType] = useState(type)
     const [readStatus, setReadStatus] = useState(marked_read)

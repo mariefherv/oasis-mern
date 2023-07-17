@@ -32,6 +32,7 @@ import dayjs from 'dayjs'
 import { TextareaAutosize } from '@mui/material';
 import Swal from 'sweetalert2';
 import { addContact, blockContact, cancelContact, confirmContact, declineContact, removeContact } from '../functions/contactFunctions';
+import TherapistCard from '../components/TherapistCard';
 
 
 export default function User() {
@@ -63,7 +64,18 @@ export default function User() {
     const [user_twt_link, setTwtLink] = useState('')
     const [user_li_link, setLiLink] = useState('')
     const [user_bio, setBio] = useState('')
+    const [user_prefix, setPrefix] = useState('')
+    const [user_first_name, setFirstName] = useState('')
+    const [user_last_name, setLastName] = useState('')
+    const [user_suffix, setSuffix] = useState('')
     const [gender, setGender] = useState('')
+
+    const [therapist_id, setTherapistId] = useState('')
+    const [field, setField] = useState('')
+    const [description, setDescription] = useState('')
+    const [online, setOnline] = useState(false)
+    const [in_person, setInPerson] = useState(false)
+
 
     const [new_username, setNewUsername] = useState(user.username)
     const [new_fb_link, setNewFBLink] = useState(user.fb_link)
@@ -183,7 +195,7 @@ export default function User() {
             data.length !== 0 ?
             setLiked(data.map(item => (
                 item.type === 'comment' ?
-                <UserCommentItem key={item.c_id} commentProp={item}/>
+                <UserCommentItem key={item.c_id} commentProp={item} likePage={true}/>
                 :
                 <UserPostItem key={item.p_id} postProp={item}/>
                 ))) 
@@ -255,7 +267,16 @@ export default function User() {
                 setTwtLink(data[0].twt_link)
                 setLiLink(data[0].li_link)
                 setBio(data[0].bio)
+                setPrefix(data[0].prefix)
+                setLastName(data[0].last_name)
+                setFirstName(data[0].first_name)
+                setSuffix(data[0].suffix)
+                setTherapistId(data[0].therapist_id)
                 setGender(data[0].gender)
+                setField(data[0].field)
+                setDescription(data[0].description)
+                setOnline(data[0].online)
+                setInPerson(data[0].in_person)
 
                 setNewUsername(data[0].username)
                 setNewFBLink(data[0].fb_link)
@@ -472,6 +493,24 @@ export default function User() {
                     <AppNavbar/>
                 </Col>
                 <Col className={'my-4 '}>
+                    {user_role === 'Therapist' && <TherapistCard therapistProp={
+                        {'therapist_id': therapist_id,
+                        'prefix': user_prefix,
+                        'first_name': user_first_name,
+                        'last_name': user_last_name,
+                        'suffix': user_suffix,
+                        'field': field,
+                        'description': description,
+                        'online': online,
+                        'in_person': in_person,
+                        'fb_link': user_fb_link,
+                        'twt_link': user_twt_link,
+                        'li_link': user_li_link,
+                        'user_therapist_id': user_id,
+                        'gender': gender}
+                        
+                    }
+                    />}
                     <Row className={'w-100 my-4 rounded-4 bg-light'}>
                         <Tabs onSelect={e => viewTab(e)}
                         activeKey={tab}
@@ -565,7 +604,10 @@ export default function User() {
                         imageMap[imageName]
                         : imageMap[imageName]} className={"profile-pic"}/>
                                 </Container>
-                                <h5 className={"text-center py-1"}>@{user_username}</h5>
+                                {user_role === 'Therapist' ?
+                                <h5 className={"text-center py-1"}>{user_prefix} {user_last_name} {user_suffix}</h5>
+                                :
+                                <h5 className={"text-center py-1"}>@{user_username}</h5>}
                                 <p className={"text-center "}><small >{user_role}</small></p>
                                 {user_id === user.id && 
                                 <Button className={"d-flex align-items-center justify-content-between w-100 border-0"}
@@ -611,7 +653,7 @@ export default function User() {
                                         :
                                         <div>
                                         <Row className='d-flex flex-row pt-3 align-items-center justify-content-center'>
-                                            {(status === "INACTIVE") && 
+                                            {((status === "INACTIVE" || !status) && user_role !== 'Therapist') && 
                                                 <Button as={"li"} className={"align-items-center mt-3 px-2 py-1 me-2 bg-primary text-center"} onClick={add}>
                                                     <i className={"bi bi-person-plus me-2"}></i>
                                                     Add contact
@@ -824,7 +866,6 @@ export default function User() {
                     </div>
                 </Container>
             </Modal>
-
 
         </Container>
     );

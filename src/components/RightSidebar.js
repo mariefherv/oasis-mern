@@ -1,8 +1,7 @@
-import {  Container,  ListGroup, Spinner, } from 'react-bootstrap';
-import ContactItem from "./ContactItem";
+import { useEffect, useState } from 'react';
+import { Col, Container, ListGroup, Row, Spinner, } from 'react-bootstrap';
 import BlogPreviewCard from "./BlogPreviewCard";
-import { useEffect } from 'react';
-import { useState } from 'react';
+import ContactItem from "./ContactItem";
 import Notifications from './Notifications';
 
 
@@ -35,14 +34,13 @@ export default function RightSidebar() {
     }, [contacts])
 
     return (
-            <Container fluid className='sticky-top vh-100 overflow-auto'>
-                <div className="mt-4"></div>
+            <Container fluid className='sticky-top vh-100 overflow-auto navbar'>
+            <Col className='pe-4'>
+                <Row>
                 <Notifications/>
-
-
-
                     <div className={" fw-bold h6"}><i className="bi bi-person-fill pe-2"></i>contacts</div>
-
+                </Row>
+                <Row>
                     <div id="contact-list">
                         {isLoading ?
                             <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
@@ -53,12 +51,14 @@ export default function RightSidebar() {
                                 {contacts}
                             </ListGroup>}
                     </div>
-                <div className="my-4 w-100 border border-1 border-bottom"></div>
-                
-                <ListGroup  >
-                    <BlogPreviewCard/>
-                </ListGroup>
-
+                </Row>
+                <Row>
+                    <div className="my-4 w-100 border border-1 border-bottom"></div>
+                    <ListGroup  >
+                        <BlogPreviewCard/>
+                    </ListGroup>
+                </Row>
+            </Col>
             </Container>
     )
 }

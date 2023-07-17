@@ -1,25 +1,22 @@
-import {Col, Container, ListGroupItem, Row, Image, Button, Dropdown} from "react-bootstrap";
-import User_f from "../static/images/nonuser_f.svg";
-import User_m from "../static/images/nonuser_m.svg";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
-import Therapist_f from "../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import dayjs from "dayjs";
+import { useContext, useEffect, useState } from "react";
+import { Button, Container, Dropdown, Image, ListGroupItem } from "react-bootstrap";
+import DropdownItem from "react-bootstrap/DropdownItem";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+import { Link } from "react-router-dom";
+import UserContext from "../UserContext";
+import { addContact, blockContact, removeContact } from "../functions/contactFunctions";
 import Admin_f from "../static/images/admin_placeholder_f.svg";
 import Admin_m from "../static/images/admin_placeholder_m.svg";
+import Therapist_f from "../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import User_f from "../static/images/nonuser_f.svg";
+import User_m from "../static/images/nonuser_m.svg";
 import Others from "../static/images/other_placeholder.svg";
-import ContactItem from "./ContactItem";
-import heart from '../static/images/love.svg'
-import activeHeart from '../static/images/love-active.svg'
-import { useState, useEffect, useContext } from "react";
-import dayjs from "dayjs";
-import UserContext from "../UserContext";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
-import {Link} from "react-router-dom";
 import person_add from "../static/images/person/person-add.svg";
-import { addContact, blockContact, removeContact } from "../functions/contactFunctions";
+import placeholder_f from "../static/images/user_placeholder_f.svg";
+import placeholder_m from "../static/images/user_placeholder_m.svg";
 
 export default function CommentItem({commentProp}){
 

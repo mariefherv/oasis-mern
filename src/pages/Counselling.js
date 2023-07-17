@@ -1,22 +1,18 @@
-import '../index.css';
+import { useEffect, useState } from 'react';
 import {
     Col,
     Container,
-    Form,
     FormLabel,
     FormSelect,
     ListGroup,
     Row,
-    Image,
-    ListGroupItem,
     Spinner
 } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AppNavbar from '../components/AppNavbar';
-import TherapistCard from "../components/TherapistCard";
 import ConsultationCard from "../components/ConsultationCard";
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useLocation, useNavigate} from 'react-router-dom';
+import TherapistCard from "../components/TherapistCard";
+import '../index.css';
 
 
 export default function Counselling() {

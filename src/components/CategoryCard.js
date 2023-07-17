@@ -1,4 +1,4 @@
-import {Card, Col} from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import category_placeholder from "../static/images/pexels-elīna-arāja-3570362.jpg";
 
 export default function CategoryCard(){

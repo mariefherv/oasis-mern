@@ -1,10 +1,9 @@
-import {Row, Col, Container, ListGroup, Button, Collapse, Form, Modal, Nav, Pagination, ModalHeader, ModalBody, Spinner} from "react-bootstrap";
-import AppNavbar from "../components/AppNavbar";
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import { useEffect } from "react";
-import Swal from "sweetalert2";
 import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Collapse, Container, Form, ListGroup, Modal, ModalBody, ModalHeader, Row, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import AppNavbar from "../components/AppNavbar";
 import PaginatedListGroup from "../components/PaginatedListGroup";
 import ReportItem from "../components/ReportItem";
 
@@ -32,7 +31,6 @@ function UserManagementItem({userProp}) {
     const [new_role, setNewRole] = useState(role)
 
     const [showRoles, setShowRoles] = useState(false);
-    const [showConfirmation, setShowConfirmation] = useState(false);
 
     const [active, setActive] = useState(false)
 
@@ -264,6 +262,8 @@ function UserManagementItem({userProp}) {
 
     }, [value, new_role, new_fb_link, new_twt_link, new_li_link, isValidFB, isValidTwt, isValidLi, first_name, new_first_name, last_name, new_last_name, prefix, new_prefix, suffix, new_suffix, field, new_field, description, new_description, online, new_online, in_person, new_in_person, fb_link, twt_link, li_link])
 
+    useEffect(() => {})
+
     const colors = [
         {
             role: 'User',
@@ -477,6 +477,9 @@ function PostManagementItem({postProp}) {
         setOpen(false);
     }
 
+    useEffect(() => {})
+
+
     function deletePost(e) {
         e.preventDefault()
 
@@ -618,7 +621,7 @@ export default function Admin() {
 
 
 
-    }, [keywordUser, keywordPost, posts])
+    }, [keywordUser, keywordPost, posts, users])
 
     return (
         <>

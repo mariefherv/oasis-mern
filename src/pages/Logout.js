@@ -1,7 +1,7 @@
-import {useContext, useEffect} from 'react';
-import {Navigate} from 'react-router-dom';
-import UserContext from '../UserContext';
+import { useContext, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import UserContext from '../UserContext';
 
 
 export default function Logout(){

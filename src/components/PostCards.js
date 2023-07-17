@@ -1,38 +1,38 @@
 
+import dayjs from 'dayjs';
+import { useContext, useEffect, useState } from 'react';
+import { Button, Container, Dropdown, Form, FormControl, Image, Modal } from 'react-bootstrap';
+import DropdownItem from "react-bootstrap/DropdownItem";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+// import { useMediaQuery } from 'react-responsive';
+import { Link, useNavigate } from "react-router-dom";
+import TextareaAutosize from 'react-textarea-autosize';
+import Swal from 'sweetalert2';
+import { PostContext } from '../PostContext';
+import UserContext from '../UserContext';
+import { addContact, blockContact, cancelContact, removeContact } from '../functions/contactFunctions';
 import '../index.css';
-import { useState, useEffect, useContext } from 'react';
-import {Container, Col, Row, Dropdown, Image, Button, Modal, FormControl, Form} from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive'
-import User_f from "../static/images/nonuser_f.svg";
-import User_m from "../static/images/nonuser_m.svg";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
-import Therapist_f from "../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../static/images/dr_placeholder_m.svg";
 import Admin_f from "../static/images/admin_placeholder_f.svg";
 import Admin_m from "../static/images/admin_placeholder_m.svg";
+import Therapist_f from "../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import User_f from "../static/images/nonuser_f.svg";
+import User_m from "../static/images/nonuser_m.svg";
 import Others from "../static/images/other_placeholder.svg";
-import TextareaAutosize from 'react-textarea-autosize';
-import {Link, ScrollRestoration, useNavigate} from "react-router-dom";
-import Swal from 'sweetalert2'
-import DropdownItem from "react-bootstrap/DropdownItem";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
 import person_add from "../static/images/person/person-add.svg";
-import UserContext from '../UserContext';
-import { addContact, blockContact, cancelContact, removeContact, unblockContact } from '../functions/contactFunctions';
-import { PostContext } from '../PostContext';
-import dayjs from 'dayjs';
+import placeholder_f from "../static/images/user_placeholder_f.svg";
+import placeholder_m from "../static/images/user_placeholder_m.svg";
 
 export default function PostCards({postProp, minimize}) {
 
     const { updatePost } = useContext(PostContext);
 
-    const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-width: 1224px)'
-    })
+    // const isDesktopOrLaptop = useMediaQuery({
+    //     query: '(min-width: 1224px)'
+    // })
 
-    const isLandscape = useMediaQuery({ query: '(orientation: landscape)' })
+    // const isLandscape = useMediaQuery({ query: '(orientation: landscape)' })
 
     const [love, setLove] = useState(false)
     const [comment, setComment] = useState("")

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, ListGroup, Nav, Pagination} from 'react-bootstrap';
+import { ListGroup, Nav, Pagination } from 'react-bootstrap';
 
 function PaginatedListGroup({ itemsPerPage, data }) {
     const [currentPage, setCurrentPage] = useState(1);

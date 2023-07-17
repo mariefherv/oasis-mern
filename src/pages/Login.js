@@ -1,20 +1,19 @@
 
-import { useContext, useState } from 'react';
-import '../index.css';
+import { useContext, useEffect, useState } from 'react';
 import { Container, Form } from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive'
-import Swal from 'sweetalert2'
-import UserContext from '../UserContext'
-import {NavLink, useNavigate} from 'react-router-dom';
-import { useEffect } from 'react';
+// import { useMediaQuery } from 'react-responsive';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import UserContext from '../UserContext';
+import '../index.css';
 
 export default function Login() {
     const {setUser} = useContext(UserContext)
-    const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-width: 1224px)'
-    })
-    const isLandscape = useMediaQuery({ query: '(orientation: landscape)' })
-    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+    // const isDesktopOrLaptop = useMediaQuery({
+    //     query: '(min-width: 1224px)'
+    // })
+    // const isLandscape = useMediaQuery({ query: '(orientation: landscape)' })
+    // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("")
@@ -57,7 +56,7 @@ export default function Login() {
                 location("/home");
 
             } else {
-                data.error === 'incorrect' ?
+                data.error !== 'banned' ?
                 Swal.fire({
                     title: "We couldn't log you in :(",
                     icon: "error",
@@ -101,6 +100,7 @@ export default function Login() {
 					username: data[0].username,
 					email: data[0].email,
 					role: data[0].role,
+                    gender: data[0].gender
 				});
 			} else {
 				setUser({
@@ -108,6 +108,7 @@ export default function Login() {
 					username: null,
                     email: null,
 					role: null,
+                    gender: null,
 				})
 			}
         })

@@ -266,10 +266,13 @@ body{
 	color: var(--red)
 }
 
-.nav-col {
-	display: flex;
-	height: 100vh;
-	position: fixed
+.navbar::-webkit-scrollbar {
+	display: none !important;
+}
+
+.navbar {
+	-ms-overflow-style: none  !important ;  /* IE and Edge */
+	scrollbar-width: none  !important ;  /* Firefox */
 }
 
 .home-col {
@@ -565,9 +568,18 @@ body{
 	width: auto;
 }
 
+.chat-avatar {
+	height: 3.5rem;
+	width: auto;
+}
+
 .therapist-avatar {
 	height: 155px;
 	width: auto;
+}
+
+.therapist-avatar:hover {
+	cursor: pointer;
 }
 
 .notification-avatar {
@@ -686,7 +698,13 @@ body{
 
 .chat-box{
 	height: 70vh;
-	overflow-y: scroll;
+	overflow-y: hidden;
+}
+
+.loading {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	--bs-modal-bg: rgba(52, 52, 52, 0) !important;
+    --bs-modal-border-color: rgba(52, 52, 52, 0) !important;
 }
 
 .contacts {
@@ -796,8 +814,6 @@ body{
 
 .gradient{
 	background: linear-gradient(180deg, rgba(234, 231, 226, 0) 0%,  rgba(223, 232, 223, 0.74) 100%);
-
-
 }
 
 .notif-panel{

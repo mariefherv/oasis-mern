@@ -1,37 +1,24 @@
-import {Button, ButtonGroup, Col, Container, Dropdown, Image, ListGroupItem, Row} from "react-bootstrap";
-import { Link} from "react-router-dom";
-import User_f from "../static/images/nonuser_f.svg";
-import User_m from "../static/images/nonuser_m.svg";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
-import Therapist_f from "../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import { useEffect, useState } from "react";
+import { Button, ButtonGroup, Col, Container, Image, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { blockContact, confirmContact, declineContact, removeContact, unblockContact } from "../functions/contactFunctions";
 import Admin_f from "../static/images/admin_placeholder_f.svg";
 import Admin_m from "../static/images/admin_placeholder_m.svg";
-import Others from "../static/images/other_placeholder.svg";
+import Therapist_f from "../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../static/images/dr_placeholder_m.svg";
 import message_icon from "../static/images/message.svg";
-import {useContext, useEffect, useState} from "react";
-import UserContext from "../UserContext";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
-import person_add from "../static/images/person/person-add.svg";
-import { addContact, blockContact, cancelContact, confirmContact, declineContact, removeContact, unblockContact } from "../functions/contactFunctions";
+import User_f from "../static/images/nonuser_f.svg";
+import User_m from "../static/images/nonuser_m.svg";
+import Others from "../static/images/other_placeholder.svg";
 
 export default function ContactItem({contactProp, active, pageView}) {
 
-    const { user } = useContext(UserContext)
-    const {username, role, gender, contact_id, user_id, status, requested_by, blocked_by, prefix, last_name, suffix, message_count} = contactProp
+    const {username, role, gender, contact_id, user_id, status, prefix, last_name, suffix, message_count} = contactProp
     
     const [new_status, setNewStatus] = useState(status)
     // const [message_count, setMessageCount] = useState(0)
 
     // contact functions
-    function add(e){
-        e.preventDefault()
-        setNewStatus(addContact(user_id))
-    }
-
     function remove(e){
         e.preventDefault()
         setNewStatus(removeContact(user_id))
@@ -39,10 +26,6 @@ export default function ContactItem({contactProp, active, pageView}) {
     
     function block(e){
         setNewStatus(blockContact(user_id))
-    }
-
-    function cancel(e){
-        setNewStatus(cancelContact(user_id))
     }
 
     function unblock(e){
@@ -109,6 +92,12 @@ export default function ContactItem({contactProp, active, pageView}) {
     // Assuming `role` and `gender` are defined variables
     const imageName = `${role}_${gender}`;
 
+    const location = useNavigate()
+
+    const goTo = (link) => {
+        location(link)
+    }
+
     return(
         <Container as={Link} to={`/chats/${contact_id}`} className='text-decoration-none'>
         <Row 
@@ -116,10 +105,10 @@ export default function ContactItem({contactProp, active, pageView}) {
             onMouseOut={()=>{setHover(false)}}
             className={classes}
             >
-            <Col xs={2} onClick={e => e.stopPropagation()}>
-                <Link to={"/user/"+user_id}>
-                    <Image src={imageMap[imageName]} style={{width:32   , height:"auto"}}/>
-                </Link>
+            <Col xs={2} onClick={e => {
+                    e.preventDefault()
+                    goTo("/user/"+user_id)}}>
+                <Image src={imageMap[imageName]} style={{width:32   , height:"auto"}}/>
             </Col>
             <Col xs={pageView ? 4 : 5}>
                 {role !== 'Therapist' ? `@${username}` : `${prefix ? prefix : ''} ${last_name} ${suffix ? suffix : ''}`}

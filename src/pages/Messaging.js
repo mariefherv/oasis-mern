@@ -118,12 +118,12 @@ export default function Messaging() {
                                     {role === 'User' && 
                                     <DropdownItem onClick={""}  className={"ps-4"}><Image src={person_add} className={"pe-3"}></Image>View Profile</DropdownItem>}
                                     <Dropdown.Header>contact</Dropdown.Header>
-                                    {(status === 'INACTIVE' && role === 'User') &&
+                                    {(status === 'INACTIVE' && role !== 'Therapist') &&
                                         <DropdownItem onClick={add}  className={"ps-4"}><Image src={person_add} className={"pe-3"}></Image>Add</DropdownItem>}
 
                                     {status === 'ACTIVE' && <DropdownItem onClick={remove} className={"ps-4"}><Image src={person_remove} className={"pe-3"}></Image>Remove</DropdownItem>}
                                     
-                                    {(status !== 'BLOCKED' && role === 'User')&& <DropdownItem onClick={block} className={"ps-4"}><Image src={x_circle} className={"pe-3"}></Image>Block</DropdownItem>}
+                                    {(status !== 'BLOCKED')&& <DropdownItem onClick={block} className={"ps-4"}><Image src={x_circle} className={"pe-3"}></Image>Block</DropdownItem>}
 
                                     {(status === 'BLOCKED' && blocked_by === user.id) && <DropdownItem onClick={unblock} className={"ps-4"}><Image src={x_circle} className={"pe-3"}></Image>Unblock</DropdownItem>}
                                     </DropdownMenu>

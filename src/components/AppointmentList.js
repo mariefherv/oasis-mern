@@ -1,22 +1,18 @@
+import { DateCalendar } from "@mui/x-date-pickers";
+import dayjs from 'dayjs';
+import { useContext, useEffect, useState } from "react";
 import {
     Button, ButtonGroup, Collapse,
     Container,
     ListGroup,
-    ListGroupItem,
     Modal, Spinner,
     Tab,
     Tabs
 } from "react-bootstrap";
-import {useState} from "react";
-import AddSlots from "./AddSlots";
-import { format } from "date-fns";
-import { DateCalendar } from "@mui/x-date-pickers";
-import { useEffect } from "react";
-import dayjs from 'dayjs';
 import { useLocation, useNavigate } from "react-router-dom";
-import Booking from "./Booking";
-import { useContext } from "react";
 import TherapistContext from "../TherapistContext";
+import AddSlots from "./AddSlots";
+import Booking from "./Booking";
 
 
 export default function AppointmentList(){
@@ -36,31 +32,29 @@ export default function AppointmentList(){
 
     useEffect(() => {
         setHumanizedDate(dayjs(new Date(date)).format('MMMM DD'))
-
         fetch(`http://localhost:4000/booking/getSlotsBy${key}/${therapist.therapist_id}`,
-        {method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-            date: date
-        })
-        }
-        )
-        .then(res => res.json())
-        .then(data => {
-            setLoading(false)
-            data.length !== 0 ?
-            setSlots(data.map(slot => {
-                return(
-                    <Booking key={slot.slot_id} bookingProp= {slot}/>
-                )
-            }))
-            :
-            setSlots(<p className="mx-auto">You have no slots for this date. You can add slots from the dropdown below.</p>)
-        })
-
+            {method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                date: date
+            })
+            }
+            )
+            .then(res => res.json())
+            .then(data => {
+                setLoading(false)
+                data.length !== 0 ?
+                setSlots(data.map(slot => {
+                    return(
+                        <Booking key={slot.slot_id} bookingProp= {slot} tab = {key}/>
+                    )
+                }))
+                :
+                setSlots(<p className="mx-auto">You have no slots for this date. You can add slots from the dropdown below.</p>)
+            })
     }, [date, key, therapist.therapist_id, slots])
 
     function nextDay(){

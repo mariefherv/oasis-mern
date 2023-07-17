@@ -1,29 +1,21 @@
-import {Button, ButtonGroup, Col, Container, Dropdown, Image, ListGroupItem, Row} from "react-bootstrap";
-import User_f from "../static/images/nonuser_f.svg";
-import User_m from "../static/images/nonuser_m.svg";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
-import Therapist_f from "../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import { Button, ButtonGroup, Col, Container, Dropdown, Image, ListGroupItem, Row } from "react-bootstrap";
+import DropdownItem from "react-bootstrap/DropdownItem";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import Admin_f from "../static/images/admin_placeholder_f.svg";
 import Admin_m from "../static/images/admin_placeholder_m.svg";
+import Therapist_f from "../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import User_f from "../static/images/nonuser_f.svg";
+import User_m from "../static/images/nonuser_m.svg";
 import Others from "../static/images/other_placeholder.svg";
-import ContactItem from "./ContactItem";
-import {useState} from "react";
-import { useContext } from "react";
-import UserContext from "../UserContext";
-import { useEffect } from "react";
-import dayjs from "dayjs";
-import Swal from "sweetalert2";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
-import {Link} from "react-router-dom";
 
-export default function Booking({bookingProp}){
+export default function Booking({bookingProp, tab}){
 
-
-    const { user } = useContext(UserContext)
     const { username, gender, role, availability, booking_id, user_id, date, time, confirmation, denied} = bookingProp
 
     const [contactId, setContactId] = useState(null)
@@ -155,9 +147,9 @@ export default function Booking({bookingProp}){
 
 
     return(
+        !availability ?
         <ListGroupItem className={"border-0 my-1"}>
         <Container>
-            {!availability ?
             <Row>
                 <Col sm={6} className="d-flex align-items-center">
                     <Col sm={1} className="d-flex align-items-center">
@@ -204,7 +196,12 @@ export default function Booking({bookingProp}){
                     <Link as={"button"} to={"/chats/"+contactId} className={"btn ms-3 border"}><i className={"bi bi-chat-dots-fill text-white"}></i></Link>
                 </Col>}
             </Row>
-            :
+        </Container>
+        </ListGroupItem>
+        :
+        tab === 'Day' ?
+        <ListGroupItem className={"border-0 my-1"}>
+            <Container>
             <Row>
                 <Col sm={6} className="d-flex align-items-center">
                     <small className="text-muted">There are no bookings for this slot.</small>
@@ -214,8 +211,9 @@ export default function Booking({bookingProp}){
                 <Col sm={4} className="d-flex align-items-center justify-content-end">
                 </Col>
             </Row>
-            }
-        </Container>
+            </Container>
         </ListGroupItem>
+        :
+        null
         )
 };

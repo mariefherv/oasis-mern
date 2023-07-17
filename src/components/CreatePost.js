@@ -1,31 +1,29 @@
 
-import '../index.css';
-import { useContext, useState } from 'react';
-import {Container, Dropdown, FormControl, Button, Image, Modal, ButtonGroup} from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive'
+import { useContext, useEffect, useState } from 'react';
+import { Button, ButtonGroup, Container, Dropdown, FormControl, Image, Modal } from 'react-bootstrap';
+// import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
-import User_f from "../static/images/nonuser_f.svg";
-import User_m from "../static/images/nonuser_m.svg";
-import placeholder_f from "../static/images/user_placeholder_f.svg";
-import placeholder_m from "../static/images/user_placeholder_m.svg";
-import Therapist_f from "../static/images/dr_placeholder_f.svg";
-import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import Swal from 'sweetalert2';
+import UserContext from '../UserContext';
+import '../index.css';
 import Admin_f from "../static/images/admin_placeholder_f.svg";
 import Admin_m from "../static/images/admin_placeholder_m.svg";
+import Therapist_f from "../static/images/dr_placeholder_f.svg";
+import Therapist_m from "../static/images/dr_placeholder_m.svg";
+import User_f from "../static/images/nonuser_f.svg";
+import User_m from "../static/images/nonuser_m.svg";
 import Others from "../static/images/other_placeholder.svg";
-import Swal from 'sweetalert2'
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import UserContext from '../UserContext';
+import placeholder_f from "../static/images/user_placeholder_f.svg";
+import placeholder_m from "../static/images/user_placeholder_m.svg";
 
 export default function CreatePost() {
-    const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-width: 1224px)'
-    })
+    // const isDesktopOrLaptop = useMediaQuery({
+    //     query: '(min-width: 1224px)'
+    // })
 
-    const isLandscape = useMediaQuery({ query: '(orientation: landscape)' })
+    // const isLandscape = useMediaQuery({ query: '(orientation: landscape)' })
 
-    const [show, setShow] = useState(false);
     const [open, setOpen] = useState(false);
 
     const [subject, setSubject] = useState("")
@@ -38,13 +36,6 @@ export default function CreatePost() {
     useEffect(() => {
         subject !== '' && content !== '' ? setActive(true) : setActive(false)
     }, [subject, content])
-
-    const showDropdown = (e) => {
-        setShow(true);
-    }
-    const hideDropdown = e => {
-        setShow(false);
-    }
 
     const openModal = (e) => {
         setOpen(true);

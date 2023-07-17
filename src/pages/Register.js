@@ -1,10 +1,9 @@
 
-import '../index.css';
-import React, { useContext,useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form } from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive';
-import {NavLink, useNavigate} from 'react-router-dom';
-import Swal from 'sweetalert2'
+import { NavLink, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import '../index.css';
 
 export default function Register() {
     // const isDesktopOrLaptop = useMediaQuery({
@@ -19,6 +18,7 @@ export default function Register() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [verifyPassword, setVerifyPassword] = useState("")
+    const [gender, setGender] = useState(null)
     
     const [isValidUsername, setValidUsername] = useState(false)
     const [isValidEmail, setValidEmail] = useState(false)
@@ -93,14 +93,13 @@ export default function Register() {
                 setVerified(false)
             }            
     
-            if(isValidEmail && isValidPassword && isVerified && !emailExists && !usernameExists) {
-                console.log('Btn must be active')
+            if(isValidEmail && isValidPassword && isVerified && !emailExists && !usernameExists && gender) {
                 setIsActive(true)
             } else {
                 setIsActive(false)
             } 
     
-        }, [username, email, password, verifyPassword, isValidUsername, isValidEmail, isValidPassword, isVerified, emailExists, usernameExists, isActive])
+        }, [username, email, password, verifyPassword, isValidUsername, isValidEmail, isValidPassword, isVerified, emailExists, usernameExists, isActive, gender])
 
     function register(e){
         
@@ -113,7 +112,8 @@ export default function Register() {
         body: JSON.stringify({
             username : username,
             email: email,
-            password : password
+            password : password,
+            gender: gender
         })
 
         }).then(res => res.json())
@@ -153,6 +153,7 @@ export default function Register() {
         setEmail(email);
         setPassword(password);
         setVerifyPassword(verifyPassword);
+        setGender(gender);
     }
 
     return (
@@ -202,6 +203,21 @@ export default function Register() {
                 />
                 {(!isVerified && verifyPassword !== '') && <Form.Text className='error-msg'> Passwords must match.</Form.Text>
                 }
+
+                <Form.Select className='form-text'
+                onChange={e => {
+                    setGender(e.target.value)
+                }}>
+                    <option value='' className='text-secondary'>Gender</option>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='non-binary'>Non-binary</option>
+                    <option value='others'>Prefer not to say</option>
+                </Form.Select>
+
+                {(gender === '') && <Form.Text className='error-msg'>Please let us know how you identify yourself.</Form.Text>
+                }
+
                 <Form.Text className='sign-in-text'>  <NavLink to={'/login'}> Already have an account? </NavLink></Form.Text>
                                 
                 <button className='sign-up-button' type="submit" onClick={register} disabled={!isActive}>

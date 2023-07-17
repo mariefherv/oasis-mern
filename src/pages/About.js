@@ -1,9 +1,9 @@
-import { Card, CardGroup, Col, Container, Image, Row } from "react-bootstrap";
+import * as PropTypes from "prop-types";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import AppNavbar from "../components/AppNavbar";
-import image1 from "../static/images/about_us/pexels-shvets-production-7176325.jpg";
 import image2 from "../static/images/about_us/pexels-anete-lusina-5723269.jpg";
 import image3 from "../static/images/about_us/pexels-anna-shvets-4672438.jpg";
-import * as PropTypes from "prop-types";
+import image1 from "../static/images/about_us/pexels-shvets-production-7176325.jpg";
 
 function AboutUsCard(props) {
     return <Card className={props.className}>

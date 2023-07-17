@@ -1,8 +1,8 @@
-import {Container, Button, ListGroup, Spinner} from "react-bootstrap";
-import React, {useState, useEffect} from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Container, ListGroup, Spinner } from "react-bootstrap";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import UserCommentItem from "./UserCommentItem";
 import UserPostItem from "./UserPostItem";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 
 

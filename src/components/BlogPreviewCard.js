@@ -1,5 +1,5 @@
-import {Card} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function BlogPreviewCard() {
     const article_title="END ONLINE ABUSE";

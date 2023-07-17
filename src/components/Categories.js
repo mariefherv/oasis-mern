@@ -1,7 +1,7 @@
 
+import { Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import CategoryCard from "../components/CategoryCard";
-import { Container, Row} from "react-bootstrap";
-import {Link} from "react-router-dom";
 
 
 export default function Categories() {

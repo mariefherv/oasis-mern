@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { Dropdown, ListGroup, Spinner, Modal, ModalHeader, ModalBody } from "react-bootstrap";
-import NotificationItem from "./NotificationItem";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Dropdown, ListGroup, Modal, ModalBody, ModalHeader, Spinner } from "react-bootstrap";
 import UserContext from "../UserContext";
+import NotificationItem from "./NotificationItem";
 
 export default function Notifications() {
 
@@ -27,6 +25,8 @@ export default function Notifications() {
     }, [setUser])
 
     function retrieveUnread(e){
+        e.preventDefault()
+        
         fetch(`http://127.0.0.1:4000/notifications/viewUnread`,
         {method: 'GET',
         headers: {
@@ -69,7 +69,7 @@ export default function Notifications() {
             setNotificationsLoading(false)
             setAllNotifications(data.map(notification => 
                 {
-                    return <NotificationItem key = {notification.notification_id} notificationProp={notification} modal={false}/>
+                    return <NotificationItem key = {notification.notification_id} notificationProp={notification} modal={true}/>
                 }
             ))
             } else {

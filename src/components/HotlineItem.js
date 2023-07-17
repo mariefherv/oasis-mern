@@ -1,4 +1,4 @@
-import {ListGroupItem, Button} from "react-bootstrap";
+import { Button, ListGroupItem } from "react-bootstrap";
 
 export default function HotlineItem({hotlineProps}) {
     const {hotlineName, hotlineAddress, hotlineNumber} = hotlineProps;

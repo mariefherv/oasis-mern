@@ -1,24 +1,20 @@
-import { useContext } from "react";
-import {Button,  Container, Form, Row} from "react-bootstrap";
-import {useParams} from "react-router-dom";
-import UserContext from "../UserContext";
-import { useState } from "react";
-import { useEffect } from "react";
-import { DateRangePicker } from "rsuite";
-import {subDays, startOfWeek, endOfWeek, addDays, startOfMonth, endOfMonth, addMonths, subMonths, addHours, startOfHour, startOfDay, format, eachDayOfInterval, eachHourOfInterval, addWeeks, endOfDay} from 'date-fns';
-import { isBefore } from "date-fns";
-import { isToday } from "date-fns";
+import { addDays, addHours, addMonths, addWeeks, eachDayOfInterval, eachHourOfInterval, endOfDay, endOfMonth, format, isBefore, isToday, startOfDay, startOfMonth, startOfWeek } from 'date-fns';
 import dayjs from "dayjs";
+import { useContext, useEffect, useState } from "react";
+import { Button, Container, Form, Modal, Row, Spinner } from "react-bootstrap";
+import { DateRangePicker } from "rsuite";
 import Swal from "sweetalert2";
+import Typewriter from 'typewriter-effect';
 import TherapistContext from "../TherapistContext";
 
 export default function AddSlots() {
 
-    const { id } = useContext(UserContext);
     const { therapist } = useContext(TherapistContext)
 
     const [dates, setDates] = useState(null)
     const [times, setTimes] = useState(null)
+
+    const [loading, setLoading] = useState(false)
 
     const [active, setActive] = useState(false)
 
@@ -95,6 +91,7 @@ export default function AddSlots() {
 
     function addSlot(e) {
         e.preventDefault()
+        setLoading(true)
 
         let arr = []
 
@@ -121,8 +118,6 @@ export default function AddSlots() {
             }
         }
 
-        console.log(arr)
-
         if(checkAllTrue(arr)){
             fetch(`http://localhost:4000/therapist/notification`, {
                 method : 'POST',
@@ -143,7 +138,7 @@ export default function AddSlots() {
                         customClass: {
                             confirmButton: 'button2'
                         }
-                    }) 
+                    }).then(setLoading(false)) 
                     : 
                     Swal.fire({
                         title: "Oh No!",
@@ -217,6 +212,21 @@ export default function AddSlots() {
             </Row>
         </Form>
             
+
+        <Modal show={loading} size="md" className='d-flex mt-auto loading' centered>
+            <Spinner className="align-self-center"/>
+            <div className="mt-2">
+                <Typewriter 
+                    options={{
+                        strings: ['adding slots...'],
+                        autoStart: true,
+                        loop: true,
+                        delay: 100,
+                        deleteSpeed: .10,
+                    }}
+                />
+            </div>
+        </Modal>
         </Container>
     );
 }

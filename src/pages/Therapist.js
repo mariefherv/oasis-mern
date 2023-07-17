@@ -1,14 +1,11 @@
 import { useContext } from "react";
-import {Col, Container, Row} from "react-bootstrap";
-import {useParams} from "react-router-dom";
-import UserContext from "../UserContext";
+import { Col, Container, Row } from "react-bootstrap";
+import TherapistContext from "../TherapistContext";
 import AppNavbar from "../components/AppNavbar";
 import AppointmentList from "../components/AppointmentList";
-import TherapistContext from "../TherapistContext";
 
 export default function Therapist() {
 
-    const { user } = useContext(UserContext);
     const { therapist } = useContext(TherapistContext)
 
     return(
@@ -18,7 +15,6 @@ export default function Therapist() {
                 <Col className={"me-5 mt-4"}>
                     <p className={'fg-primary fw-bold display-6'}>welcome, {therapist.prefix ? therapist.prefix : ''} {therapist.last_name}</p>
                     <AppointmentList/>
-
                 </Col>
             </Row>
         </Container>
