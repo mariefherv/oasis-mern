@@ -156,7 +156,7 @@ function App() {
                 <Route exact path="/counselling" element={<Counselling/>}/>
                 <Route exact path="/logout" element={<Logout/>}/>
                 <Route exact path="/chats/:contact_id" element={<Messaging/>}/>
-                <Route exact path="/error" element={<Error/>}/>
+                <Route exact path="/*" element={<Error/>}/>
             </Route>
         )
     );
