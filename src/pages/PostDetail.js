@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { Col, Container, ListGroup, Row, Spinner } from "react-bootstrap";
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import AppNavbar from "../components/AppNavbar";
 import CommentItem from "../components/CommentItem";
 import PostCards from "../components/PostCards";
 import RightSidebar from "../components/RightSidebar";
 import '../index.css';
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 export default function PostDetail() {
     const { post_id } = useParams()
+
+    const { user } = useContext(UserContext)
 
     const [post, setPost] = useState([])
     const [comments, setComments] = useState([])
@@ -49,6 +53,9 @@ export default function PostDetail() {
     )
     
     return (
+        user.id === null ?
+            <Navigate to='/error' />
+        :
         <Container fluid>
             <Row className='d-flex flex-row'>
                 <Col lg={2} className=''>

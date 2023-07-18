@@ -112,7 +112,6 @@ body{
 	align-items: center;
 	flex-direction: column;
 	height: 100vh;
-	margin: -20px 0 50px;
 	background-image: url("../src/static/images/bg.png");
 }
 
@@ -190,13 +189,27 @@ body{
 	color: white;
 }
 
+.about-btn {
+	position: absolute;
+	align-self: flex-end;
+	margin-right: 4.5vw;
+	margin-bottom: 90vh;
+	color: white;
+	border-radius: 50px;
+}
+
+.back-btn {
+	color: white;
+	font-size: 1rem;
+
+}
+
 .auth-container {
 	border-radius: 10px;
 	position: relative;
 	overflow: hidden;
-	width: 60%;
+	width: 70%;
 	min-height: 900px;
-	margin-top: 6vh;
 	/*padding-bottom: 120px;*/
 }
 
@@ -273,6 +286,15 @@ body{
 .navbar {
 	-ms-overflow-style: none  !important ;  /* IE and Edge */
 	scrollbar-width: none  !important ;  /* Firefox */
+}
+
+.counselling-bar::-webkit-scrollbar {
+	display: none !important;
+}
+
+
+.counselling-bar {
+	max-height: 40vh;
 }
 
 .home-col {
@@ -702,7 +724,7 @@ body{
 }
 
 .loading {
-	background-color: rgba(255, 255, 255, 0.2) !important;
+	background-color: rgba(255, 255, 255, 0.35) !important;
 	--bs-modal-bg: rgba(52, 52, 52, 0) !important;
     --bs-modal-border-color: rgba(52, 52, 52, 0) !important;
 }

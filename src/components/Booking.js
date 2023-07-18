@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { Button, ButtonGroup, Col, Container, Dropdown, Image, ListGroupItem, Row } from "react-bootstrap";
+import { Button, ButtonGroup, Col, Container, Dropdown, Image, ListGroupItem, Modal, Row, Spinner } from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
@@ -13,6 +13,8 @@ import Therapist_m from "../static/images/dr_placeholder_m.svg";
 import User_f from "../static/images/nonuser_f.svg";
 import User_m from "../static/images/nonuser_m.svg";
 import Others from "../static/images/other_placeholder.svg";
+import Typewriter from 'typewriter-effect';
+
 
 export default function Booking({bookingProp, tab}){
 
@@ -23,24 +25,19 @@ export default function Booking({bookingProp, tab}){
     let [humanizedDate, setHumanizedDate] = useState('')
     let [humanizedTime, setHumanizedTime] = useState('')
 
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
         setHumanizedDate(dayjs(new Date(date)).format('MMMM DD'))
         setHumanizedTime(dayjs(time, 'HH:mm:ss').format('hh:mm A'))
 
-        fetch(`http://localhost:4000/booking/getDetails/${booking_id}`,
-        {method: 'GET',
-        headers: {
-            'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-        })
-        .then(res => res.json())
-        .then(data => {})
-
-    }, [booking_id, date, time])
+    }, [booking_id, date, time]
+    
+    )
 
     function confirm(e){
         e.preventDefault()
+        setLoading(true)
 
         fetch(`http://localhost:4000/booking/confirmBooking/${booking_id}`, {
             method : 'PATCH',
@@ -66,7 +63,7 @@ export default function Booking({bookingProp, tab}){
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })
+                }).then(setLoading(false))
                 } else {
                 Swal.fire({
                     title: "Oh No!",
@@ -79,12 +76,14 @@ export default function Booking({bookingProp, tab}){
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })}
+                }).then(setLoading(false))
+            }
         })
     }
 
     function deny(e){
         e.preventDefault()
+        setLoading(true)
 
         fetch(`http://localhost:4000/booking/denyBooking/${booking_id}`, {
             method : 'PATCH',
@@ -109,7 +108,7 @@ export default function Booking({bookingProp, tab}){
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })
+                }).then(setLoading(false))
                 :
                 Swal.fire({
                     title: "Oh No!",
@@ -122,7 +121,7 @@ export default function Booking({bookingProp, tab}){
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })
+                }).then(setLoading(false))
         })
     }
 
@@ -147,9 +146,9 @@ export default function Booking({bookingProp, tab}){
 
 
     return(
-        !availability ?
         <ListGroupItem className={"border-0 my-1"}>
         <Container>
+            {!availability ?
             <Row>
                 <Col sm={6} className="d-flex align-items-center">
                     <Col sm={1} className="d-flex align-items-center">
@@ -196,12 +195,7 @@ export default function Booking({bookingProp, tab}){
                     <Link as={"button"} to={"/chats/"+contactId} className={"btn ms-3 border"}><i className={"bi bi-chat-dots-fill text-white"}></i></Link>
                 </Col>}
             </Row>
-        </Container>
-        </ListGroupItem>
-        :
-        tab === 'Day' ?
-        <ListGroupItem className={"border-0 my-1"}>
-            <Container>
+            :
             <Row>
                 <Col sm={6} className="d-flex align-items-center">
                     <small className="text-muted">There are no bookings for this slot.</small>
@@ -211,9 +205,23 @@ export default function Booking({bookingProp, tab}){
                 <Col sm={4} className="d-flex align-items-center justify-content-end">
                 </Col>
             </Row>
-            </Container>
+            }
+
+        <Modal show={loading} size="md" className='d-flex mt-auto loading' centered>
+            <Spinner className="align-self-center"/>
+            <div className="mt-2">
+                <Typewriter 
+                    options={{
+                        strings: ['please wait a moment...'],
+                        autoStart: true,
+                        loop: true,
+                        delay: 100,
+                        deleteSpeed: .10,
+                    }}
+                />
+            </div>
+        </Modal>
+        </Container>
         </ListGroupItem>
-        :
-        null
         )
 };

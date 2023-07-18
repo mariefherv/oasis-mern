@@ -151,7 +151,7 @@ export default function AddSlots() {
                         customClass: {
                             confirmButton: 'button2'
                         }
-                    })
+                    }).then(setLoading(false))
             })
         } else {
             Swal.fire({

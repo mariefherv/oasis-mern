@@ -89,7 +89,7 @@ export default function Notifications() {
                 <div>
                     <Dropdown.Toggle  type="button"
                     className=" border-0 post-options  " data-bs-toggle="dropdown" aria-expanded="false">
-                    {!user.has_notifications ? <i className="bi bi-bell-fill bg-white rounded-4 px-2 py-1 shadow-sm" style={{fontSize:"1.5rem"}}></i> : <i className="bi bi-bell-fill bg-white rounded-4 px-2 py-1 shadow-sm position-relative"> <i className="bi bi-circle-fill text-danger notif-circle"></i></i>}
+                    {!user.has_notifications ? <i className="bi bi-bell-fill bg-white rounded-4 px-2 py-1 shadow-sm"></i> : <i className="bi bi-bell-fill bg-white rounded-4 px-2 py-1 shadow-sm position-relative"> <i className="bi bi-circle-fill text-danger notif-circle"></i></i>}
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="w-100 m-0 p-2">
                         <Dropdown.Header className={"h6"}>notifications</Dropdown.Header>

@@ -44,7 +44,7 @@ export default function RightSidebar() {
                     <div id="contact-list">
                         {isLoading ?
                             <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
-                                <Spinner/>
+                                <Spinner animation='grow' size='sm'/>
                             </div>
                             :
                             <ListGroup className='d-flex flex-column contacts overflow-auto' >

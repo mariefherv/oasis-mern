@@ -6,7 +6,7 @@ import {
     Tabs,
     Tab, Button, ListGroup, Modal, FormControl, Form, Spinner
 } from 'react-bootstrap';
-import { useLocation, useNavigate, useParams} from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
 import AppNavbar from '../components/AppNavbar';
 import User_f from "../static/images/nonuser_f.svg";
 import User_m from "../static/images/nonuser_m.svg";
@@ -487,6 +487,9 @@ export default function User() {
             const imageName = `${user_role}_${gender}`;
 
     return(
+        user.id === null ?
+            <Navigate to='/error' />
+        :
         <Container fluid>
             <Row className='d-flex flex-row'>
                 <Col lg={2} className=''>

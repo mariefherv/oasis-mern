@@ -1,7 +1,7 @@
 
 import dayjs from 'dayjs';
 import { useContext, useEffect, useState } from 'react';
-import { Button, Container, Dropdown, Form, FormControl, Image, Modal } from 'react-bootstrap';
+import { Button, Container, Dropdown, Form, FormControl, Image, Modal, Spinner } from 'react-bootstrap';
 import DropdownItem from "react-bootstrap/DropdownItem";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
@@ -23,6 +23,8 @@ import Others from "../static/images/other_placeholder.svg";
 import person_add from "../static/images/person/person-add.svg";
 import placeholder_f from "../static/images/user_placeholder_f.svg";
 import placeholder_m from "../static/images/user_placeholder_m.svg";
+import Typewriter from 'typewriter-effect';
+
 
 export default function PostCards({postProp, minimize}) {
 
@@ -43,6 +45,7 @@ export default function PostCards({postProp, minimize}) {
 
     const [showReport, setShowReport] = useState(false)
     const [activeReport, setActiveReport] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [open, setOpen] = useState(false);
     const openModal = (e) => {
@@ -150,6 +153,7 @@ export default function PostCards({postProp, minimize}) {
 
     function reply(e) {
         e.preventDefault()
+        setLoading(true)
 
         fetch(`http://localhost:4000/post/comment/${p_id}`, {
             method : 'POST',
@@ -175,7 +179,7 @@ export default function PostCards({postProp, minimize}) {
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })
+                }).then(setLoading(false))
                 :
                 Swal.fire({
                     title: "Oh No!",
@@ -188,13 +192,14 @@ export default function PostCards({postProp, minimize}) {
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })
+                }).then(setLoading(false))
         })
         setComment("");
     }
 
     function reportPost(e){
         e.preventDefault()
+        setLoading(true)
 
         fetch(`http://localhost:4000/post/report/${p_id}`, {
             method : 'POST',
@@ -220,7 +225,7 @@ export default function PostCards({postProp, minimize}) {
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })
+                }).then(setLoading(false))
                 :
                 Swal.fire({
                     title: "Oh No!",
@@ -233,7 +238,7 @@ export default function PostCards({postProp, minimize}) {
                     customClass: {
                         confirmButton: 'button2'
                     }
-                })
+                }).then(setLoading(false))
         })
     }
 
@@ -273,6 +278,7 @@ export default function PostCards({postProp, minimize}) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
+                setLoading(true)
                 fetch(`http://localhost:4000/post/edit/${p_id}`, {
                     method : 'PUT',
                     headers : {
@@ -311,7 +317,7 @@ export default function PostCards({postProp, minimize}) {
                                 confirmButton: 'button2'
                             }
                         })
-                })
+                }).then(setLoading(false))
                 setNewSubject(new_subject);
                 setNewContent(new_content);
                 closeModal()
@@ -337,6 +343,7 @@ export default function PostCards({postProp, minimize}) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
+                setLoading(true)
                 fetch(`http://127.0.0.1:4000/post/delete/${p_id}`, {
                 method : 'DELETE',
                 headers : {
@@ -347,7 +354,7 @@ export default function PostCards({postProp, minimize}) {
                 .then(data => {
                     data ? Swal.fire('Post Deleted!', '', 'success')
                     : Swal.fire('Oh no! Something went wrong :(', '', 'error')
-                })
+                }).then(setLoading(false))
             }
         })
     }
@@ -562,6 +569,21 @@ export default function PostCards({postProp, minimize}) {
                     </div> 
                     </Modal.Body>
                 </Modal>
+
+                <Modal show={loading} size="md" className='d-flex mt-auto loading' centered>
+                <Spinner className="align-self-center"/>
+                <div className="mt-2">
+                    <Typewriter 
+                        options={{
+                            strings: ['please wait a moment...'],
+                            autoStart: true,
+                            loop: true,
+                            delay: 100,
+                            deleteSpeed: .10,
+                        }}
+                    />
+                </div>
+            </Modal>
             </Container>
     )
 }

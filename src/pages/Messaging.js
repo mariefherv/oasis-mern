@@ -1,24 +1,23 @@
-import '../index.css';
+import { useContext, useEffect, useState } from 'react';
 import {
     Col,
     Container, Dropdown, Image,
     ListGroup,
     Row
 } from 'react-bootstrap';
+import DropdownItem from "react-bootstrap/DropdownItem";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+import { useParams } from 'react-router-dom';
+import UserContext from '../UserContext';
 import AppNavbar from '../components/AppNavbar';
 import ContactItem from "../components/ContactItem";
-import { useContext, useEffect } from 'react';
-import { useState } from 'react';
 import MessageBox from '../components/MessageBox';
-import { useParams } from 'react-router-dom';
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
+import { addContact, blockContact, removeContact, unblockContact } from '../functions/contactFunctions';
+import '../index.css';
 import person_add from "../static/images/person/person-add.svg";
 import person_remove from "../static/images/person/person-dash.svg";
 import x_circle from "../static/images/x-circle.svg";
-import { addContact, blockContact, removeContact, unblockContact } from '../functions/contactFunctions';
-import UserContext from '../UserContext';
 
 
 export default function Messaging() {
@@ -93,7 +92,8 @@ export default function Messaging() {
         setStatus(unblockContact(activeContact.user_id))
     }
 
-    return (    
+    return (
+   
         <Container fluid>
             <Row className='d-flex flex-row'>
                 <Col lg={2} className=''>

@@ -1,9 +1,11 @@
 
 import React, { useEffect, useState } from "react";
-import { Container, Form } from 'react-bootstrap';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Button, Container, Form } from 'react-bootstrap';
+import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../index.css';
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 export default function Register() {
     // const isDesktopOrLaptop = useMediaQuery({
@@ -13,6 +15,8 @@ export default function Register() {
     // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
         // state hooks to store the values of the input fields
+
+    const { user } = useContext(UserContext)
     
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -157,7 +161,11 @@ export default function Register() {
     }
 
     return (
+        user.id !== null ?
+        <Navigate to='/home' />
+        :
         <div className='pages'>
+        <Button as={Link} to='/about' className="about-btn">About Us</Button>
         <Container fluid className='auth-container'>
             <Form className='form-container entry-form'>
                 <Form.Text>

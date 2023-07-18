@@ -1,12 +1,12 @@
 import './index.css';
 import { UserProvider } from './UserContext';
-// import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-    RouterProvider
-} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+// import {
+//     createBrowserRouter,
+//     createRoutesFromElements,
+//     Route,
+//     RouterProvider
+// } from "react-router-dom";
 import Welcome from './pages/Welcome';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -59,6 +59,19 @@ function App() {
 
   const unsetUser = () => {
 		localStorage.clear();
+    setUser({
+      id: null,
+      username: null,
+      email: null,
+      gender: null,
+      role: null,
+      bio: null,
+      registration_date: null,
+      fb_link: null,
+      twt_link: null,
+      li_link: null,
+      has_notifications: null
+    })
 	};
 
   useEffect(() => {
@@ -141,31 +154,47 @@ function App() {
     }
 	}, [user.role, user.has_notifications])
 
-    const router = createBrowserRouter(
-        createRoutesFromElements(
-            <Route >
+    // const router = createBrowserRouter(
+    //     createRoutesFromElements(
+    //         <Route >
+    //             <Route exact path="/" element={<Welcome/>}/>
+    //             <Route exact path="/about" element={<About/>}/>
+    //             <Route exact path="/register" element={<Register/>}/>
+    //             <Route exact path="/login" element={<Login/>}/>
+    //             <Route exact path="/home" element={<Home/>}/>
+    //             <Route exact path="/user/:user_id" element={<User/>}/>
+    //             {user.role === 'Therapist' && <Route exact path="/therapist" element={<Therapist/>}/>}
+    //             {user.role === 'Admin' && <Route exact path="/admin" element={<Admin />}/>}
+    //             <Route exact path="/post/:post_id" element={<PostDetail/>}/>
+    //             <Route exact path="/counselling" element={<Counselling/>}/>
+    //             <Route exact path="/logout" element={<Logout/>}/>
+    //             <Route exact path="/chats/:contact_id" element={<Messaging/>}/>
+    //             <Route exact path="/*" element={<Error/>}/>
+    //         </Route>
+    //     )
+    // );
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <UserProvider value={{user, setUser, unsetUser}}>
+    <TherapistProvider value={{therapist, setTherapist}}>
+    <PostProvider>
+        <Router>
+          <Routes >
                 <Route exact path="/" element={<Welcome/>}/>
                 <Route exact path="/about" element={<About/>}/>
                 <Route exact path="/register" element={<Register/>}/>
                 <Route exact path="/login" element={<Login/>}/>
                 <Route exact path="/home" element={<Home/>}/>
                 <Route exact path="/user/:user_id" element={<User/>}/>
-                {user.role === 'Therapist' && <Route exact path="/therapist" element={<Therapist/>}/>}
-                {user.role === 'Admin' && <Route exact path="/admin" element={<Admin />}/>}
+                <Route exact path="/therapist" element={ user.role === 'Therapist' ? <Therapist/> : <Error />}/>
+                <Route exact path="/admin" element={ user.role === 'Admin' ? <Admin /> : <Error />}/>
                 <Route exact path="/post/:post_id" element={<PostDetail/>}/>
                 <Route exact path="/counselling" element={<Counselling/>}/>
-                <Route exact path="/logout" element={<Logout/>}/>
+                <Route exact path="/logout" element={ <Logout/>}/>
                 <Route exact path="/chats/:contact_id" element={<Messaging/>}/>
                 <Route exact path="/*" element={<Error/>}/>
-            </Route>
-        )
-    );
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <UserProvider value={{user, setUser, unsetUser}}>
-    <TherapistProvider value={{therapist, setTherapist}}>
-    <PostProvider>
-        <RouterProvider router={router} />
+          </Routes>
+        </Router>
     </PostProvider>
     </TherapistProvider>
     </UserProvider>

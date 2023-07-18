@@ -10,7 +10,7 @@ export default function Error(){
         let timerInterval = setTimeout(() => setTime(time-1), 1000)
 
         if(time===0){
-            location("/home");
+            location("/");
         }
 
         return () => {

@@ -168,7 +168,7 @@ export default function Counselling() {
                 <Col lg={3} >
                     <Container fluid className={'sticky-top'}>
                         <h5 className={'fg-primary pt-4'}>upcoming consultations</h5>
-                        <ListGroup className={'my-2 overflow-auto'}>
+                        <ListGroup className={'my-2 overflow-auto counselling-bar'}>
                         {upcomingLoading ?
                             <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
                                 <Spinner/>
@@ -177,7 +177,7 @@ export default function Counselling() {
                             upcomingBookings}
                         </ListGroup>
                         <h5 className={'fg-primary pt-4'}>recent consultations</h5>
-                        <ListGroup className={'overflow-y'}>
+                        <ListGroup className={'overflow-auto counselling-bar'}>
                             {recentLoading ?
                             <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
                                 <Spinner/>
@@ -185,7 +185,6 @@ export default function Counselling() {
                             :
                             pastBookings}
                         </ListGroup>
-
                     </Container>
                 </Col>
             </Row>

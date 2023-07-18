@@ -1,9 +1,12 @@
 import * as PropTypes from "prop-types";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import AppNavbar from "../components/AppNavbar";
 import image2 from "../static/images/about_us/pexels-anete-lusina-5723269.jpg";
 import image3 from "../static/images/about_us/pexels-anna-shvets-4672438.jpg";
 import image1 from "../static/images/about_us/pexels-shvets-production-7176325.jpg";
+import { useContext } from "react";
+import UserContext from "../UserContext";
+import { Link } from "react-router-dom";
 
 function AboutUsCard(props) {
     return <Card className={props.className}>
@@ -17,12 +20,14 @@ function AboutUsCard(props) {
 AboutUsCard.propTypes = {className: PropTypes.string};
 const About = () => {
     const about_card = "about-us-card border-0 m-2 flex-grow-1 shadow-sm";
+    const { user } = useContext(UserContext)
     return ( 
         <Container fluid >
             <Row className='d-flex flex-row '>
+                {user.id !== null ?
                 <Col lg={2}>
                     <AppNavbar/>
-                </Col>
+                </Col> : <Button as={Link} to='/' className="back-btn sticky-top">return to oasis</Button>}
                 <Col>
                     <Container fluid className={" rounded-4 my-4"} >
                         <Container className="d-flex flex-row p-4  ">
@@ -82,7 +87,7 @@ const About = () => {
             </Row>
 
         </Container>
-     );
+    );
 }
  
 export default About;

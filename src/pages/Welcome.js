@@ -4,8 +4,11 @@ import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
 import '../index.css';
+import { useContext } from 'react';
+import UserContext from '../UserContext';
 
 export default function Welcome() {
+    const { user } = useContext(UserContext)
     // Media Queries for responsive UI
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 1224px)'
@@ -16,7 +19,10 @@ export default function Welcome() {
     const location = useNavigate()
 
     function signUp() {
-        location("/register");
+        user.id !== null ?
+        location("/home")
+        :
+        location("/login");
     }
 
 

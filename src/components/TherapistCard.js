@@ -3,7 +3,7 @@ import { DateCalendar, DateField } from "@mui/x-date-pickers";
 import { parse } from "date-fns";
 import dayjs from 'dayjs';
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Image, ListGroupItem, Modal, ModalBody, ModalTitle, Row } from "react-bootstrap";
+import { Button, Col, Form, Image, ListGroupItem, Modal, ModalBody, ModalTitle, Row, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Therapist_f from "../static/images/dr_placeholder_f.svg";
@@ -13,6 +13,7 @@ import lnk from '../static/images/linkedin.svg';
 import Others from "../static/images/other_placeholder.svg";
 import thumbs_up from '../static/images/thumbs_up.svg';
 import twt from '../static/images/twitter.svg';
+import Typewriter from 'typewriter-effect';
 
 export default function TherapistCard({therapistProp}){
 
@@ -36,6 +37,8 @@ export default function TherapistCard({therapistProp}){
     const [days, setDays] = useState([])
 
     const [available, setAvailable] = useState(false)
+    const [ loading, setLoading ] = useState(false)
+    const [ slotLoading, setSlotLoading ] = useState(false)
 
     let [humanizedDate, setHumanizedDate] = useState('')
     let [humanizedTime, setHumanizedTime] = useState('')
@@ -62,10 +65,8 @@ export default function TherapistCard({therapistProp}){
                 })
                 }).then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     if(data.length !== 0) {
                         const datetime = parse(data[0].date.concat(" ", data[0].time), 'yyyy-MM-dd HH:mm:ss', new Date());
-                        console.log(datetime)
                         setSlotID(data[0].slot_id)
                         setDateTime(datetime)
                     }
@@ -73,6 +74,7 @@ export default function TherapistCard({therapistProp}){
         } else if (currentStep < maxSteps) {
             setCurrentStep(currentStep + 1);
         } else {
+            setLoading(true)
             fetch(`http://localhost:4000/booking/bookSlot/${slot_id}`, {
                 method : 'POST',
                 headers : {
@@ -99,7 +101,7 @@ export default function TherapistCard({therapistProp}){
                         customClass: {
                             confirmButton: 'button2'
                         }
-                    })
+                    }).then(setLoading(false))
                     :
                     Swal.fire({
                         title: "Oh No!",
@@ -112,7 +114,7 @@ export default function TherapistCard({therapistProp}){
                         customClass: {
                             confirmButton: 'button2'
                         }
-                })
+                }).then(setLoading(false))
             })
             setTime('')
             setDate(null)
@@ -127,6 +129,7 @@ export default function TherapistCard({therapistProp}){
     }
 
     useEffect(() => {
+        setSlotLoading(true)
         setHumanizedTime(dayjs(time).format('hh:mm A'))
         setHumanizedDate(dayjs(new Date(date)).format('MMMM DD[,] YYYY'))
 
@@ -175,6 +178,7 @@ export default function TherapistCard({therapistProp}){
                     }
                     }).then(res => res.json())
                     .then(data => {
+                        setSlotLoading(false)
                         data.length !== 0 ? setAvailable(true) : setAvailable(false)
                     })
         }, [time, date, humanizedDate, humanizedTime, therapist_id])
@@ -227,8 +231,11 @@ export default function TherapistCard({therapistProp}){
                             <Col >In-Person Consultation</Col>
                         </Row> : ''}
                     </Col>
-                    <Col className={'col-4 d-flex flex-row '}>
-                        {available ?
+                    <Col className={'col-4 d-flex flex-row justify-content-end'}>
+                        {slotLoading ?
+                        <Spinner size="sm"/>
+                        :
+                        available ?
                         <Button className={'w-100'} onClick={handleShow}>Book Now</Button>
                         :
                         <em className="text-muted">No slots available</em>
@@ -316,7 +323,7 @@ export default function TherapistCard({therapistProp}){
                                                             <Button onClick={handleBack} className={"m-1"}>Back</Button>
                                                         )}
                                                         {(currentStep === maxSteps ) ?
-                                                            (<Button type="submit" className={"m-1"}>Confirm</Button>)
+                                                            (<Button type="submit" className={"m-1 next-button"} disabled={!slot_id && !datetime}>Confirm</Button>)
                                                             :(<Button type="submit" className={"m-1 next-button"} disabled={(currentStep === 2 && !active)}>Next</Button>)}
                                             </Form.Group>
                                         </Form>
@@ -326,6 +333,21 @@ export default function TherapistCard({therapistProp}){
                 </Row>
             </Col>
         </Row>
+
+        <Modal show={loading} size="md" className='d-flex mt-auto loading' centered>
+            <Spinner className="align-self-center"/>
+            <div className="mt-2">
+                <Typewriter 
+                    options={{
+                        strings: ['booking your appointment...'],
+                        autoStart: true,
+                        loop: true,
+                        delay: 100,
+                        deleteSpeed: .10,
+                    }}
+                />
+            </div>
+        </Modal>
         </ListGroupItem>
     )
 }

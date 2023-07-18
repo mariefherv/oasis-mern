@@ -1,14 +1,14 @@
 
 import { useContext, useEffect, useState } from 'react';
-import { Container, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 // import { useMediaQuery } from 'react-responsive';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import '../index.css';
 
 export default function Login() {
-    const {setUser} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     // const isDesktopOrLaptop = useMediaQuery({
     //     query: '(min-width: 1224px)'
     // })
@@ -124,7 +124,11 @@ export default function Login() {
         }, [password, username, isActive])
 
     return (
+        user.id !== null ?
+        <Navigate to='/home' />
+        :
         <div className='pages'>
+        <Button as={Link} to='/about' className="about-btn">About Us</Button>
         <Container fluid className='auth-container'>
             <Form className='form-container entry-form'>
                 <Form.Text>

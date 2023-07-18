@@ -45,7 +45,6 @@ export default function AppointmentList(){
             )
             .then(res => res.json())
             .then(data => {
-                setLoading(false)
                 data.length !== 0 ?
                 setSlots(data.map(slot => {
                     return(
@@ -54,8 +53,13 @@ export default function AppointmentList(){
                 }))
                 :
                 setSlots(<p className="mx-auto">You have no slots for this date. You can add slots from the dropdown below.</p>)
+                setLoading(false)
             })
     }, [date, key, therapist.therapist_id, slots])
+
+    useEffect(() => {
+        setLoading(true)
+    }, [key])
 
     function nextDay(){
         setDate(dayjs(date).add(1, 'day'))
@@ -97,7 +101,7 @@ export default function AppointmentList(){
                 }}
               className="mb-3"
           >
-              <Tab eventKey="Day" title="Day">
+              <Tab eventKey="Day" title="Day" tabClassName='tab-title'>
                   <ListGroup className={"appointment-list overflow-auto"}>
                     {loading ? 
                     <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
@@ -107,7 +111,7 @@ export default function AppointmentList(){
                     slots}
                   </ListGroup>
               </Tab>
-              <Tab eventKey="Week" title="Week">
+              <Tab eventKey="Week" title="Week" tabClassName='tab-title'>
                   <ListGroup className={"appointment-list overflow-auto"}>
                     {loading ? 
                     <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
@@ -117,7 +121,7 @@ export default function AppointmentList(){
                     slots}
                   </ListGroup>
               </Tab>
-              <Tab eventKey="Month" title="Month" >
+              <Tab eventKey="Month" title="Month" tabClassName='tab-title'>
                   <ListGroup className={"appointment-list overflow-auto"}>
                     {loading ? 
                     <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
