@@ -1,11 +1,12 @@
 
 import React, { useEffect, useState } from "react";
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Modal, Spinner } from 'react-bootstrap';
 import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../index.css';
 import { useContext } from "react";
 import UserContext from "../UserContext";
+import Typewriter from 'typewriter-effect';
 
 export default function Register() {
     // const isDesktopOrLaptop = useMediaQuery({
@@ -32,6 +33,8 @@ export default function Register() {
     const [usernameExists, setUsernameExists] = useState(false)
     const [isActive, setIsActive] = useState(false)
 
+    const [loading, setLoading] = useState(false)
+
     const location = useNavigate();
 
     useEffect(()=> {
@@ -44,7 +47,7 @@ export default function Register() {
             username.match(valid_username) ? setValidUsername(true) : setValidUsername(false)
 
             // check if username already exists
-            fetch('http://localhost:4000/user/checkUsername', {
+            fetch('https://oasis-api-nocv.onrender.com/user/checkUsername', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -72,7 +75,7 @@ export default function Register() {
             }
 
             // check if email already exists
-            fetch('http://localhost:4000/user/checkEmail', {
+            fetch('https://oasis-api-nocv.onrender.com/user/checkEmail', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -106,9 +109,10 @@ export default function Register() {
         }, [username, email, password, verifyPassword, isValidUsername, isValidEmail, isValidPassword, isVerified, emailExists, usernameExists, isActive, gender])
 
     function register(e){
-        
         e.preventDefault()
-        fetch('http://localhost:4000/user/register', {
+        setLoading(true)
+
+        fetch('https://oasis-api-nocv.onrender.com/user/register', {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json'
@@ -152,7 +156,7 @@ export default function Register() {
                 }) 
             }
         
-        })
+        }).then(setLoading(false))
         setUsername(username);
         setEmail(email);
         setPassword(password);
@@ -232,6 +236,21 @@ export default function Register() {
                     Sign Up
                 </button>
             </Form>
+
+        <Modal show={loading} size="md" className='d-flex mt-auto loading' centered>
+            <Spinner className="align-self-center"/>
+            <div className="mt-2">
+                <Typewriter 
+                    options={{
+                        strings: ['please wait a moment...'],
+                        autoStart: true,
+                        loop: true,
+                        delay: 100,
+                        deleteSpeed: .10,
+                    }}
+                />
+            </div>
+        </Modal>
         </Container>
         </div>   
         )

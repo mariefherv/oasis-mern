@@ -35,7 +35,7 @@ export default function Messaging() {
     const [suffix, setSuffix] = useState('')
     
     useEffect(() => {
-        fetch(`http://localhost:4000/contact/viewAll`,
+        fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -51,7 +51,7 @@ export default function Messaging() {
             }))
         })
 
-        fetch(`http://localhost:4000/contact/viewContactDetails/${contact_id.contact_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/contact/viewContactDetails/${contact_id.contact_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

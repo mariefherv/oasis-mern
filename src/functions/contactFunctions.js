@@ -10,7 +10,7 @@ export function addContact(user_id) {
         didOpen: () => {
             Swal.showLoading()
             loading = true
-            fetch(`http://localhost:4000/contact/addContact/${user_id}`, {
+            fetch(`https://oasis-api-nocv.onrender.com/contact/addContact/${user_id}`, {
             method : 'PUT',
             headers : {
                 'Content-Type' : 'application/json',
@@ -62,7 +62,7 @@ export function removeContact(user_id) {
         didOpen: () => {
             Swal.showLoading()
             loading = true
-            fetch(`http://localhost:4000/contact/removeContact/${user_id}`, {
+            fetch(`https://oasis-api-nocv.onrender.com/contact/removeContact/${user_id}`, {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -115,7 +115,7 @@ export function blockContact(user_id) {
         didOpen: () => {
             Swal.showLoading()
             loading = true
-            fetch(`http://localhost:4000/contact/blockContact/${user_id}`, {
+            fetch(`https://oasis-api-nocv.onrender.com/contact/blockContact/${user_id}`, {
                 method : 'PUT',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -168,7 +168,7 @@ export function unblockContact(user_id) {
         didOpen: () => {
             Swal.showLoading()
             loading = true
-            fetch(`http://localhost:4000/contact/unblockContact/${user_id}`, {
+            fetch(`https://oasis-api-nocv.onrender.com/contact/unblockContact/${user_id}`, {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -221,7 +221,7 @@ export function confirmContact(user_id) {
         didOpen: () => {
             Swal.showLoading()
             loading = true
-            fetch(`http://localhost:4000/contact/confirmContact/${user_id}`, {
+            fetch(`https://oasis-api-nocv.onrender.com/contact/confirmContact/${user_id}`, {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -273,7 +273,7 @@ export function declineContact(user_id) {
         didOpen: () => {
             Swal.showLoading()
             loading = true
-            fetch(`http://localhost:4000/contact/declineContact/${user_id}`, {
+            fetch(`https://oasis-api-nocv.onrender.com/contact/declineContact/${user_id}`, {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -326,7 +326,7 @@ export function cancelContact(user_id) {
         didOpen: () => {
             Swal.showLoading()
             loading = true
-            fetch(`http://localhost:4000/contact/cancelContact/${user_id}`, {
+            fetch(`https://oasis-api-nocv.onrender.com/contact/cancelContact/${user_id}`, {
                 method : 'DELETE',
                 headers : {
                     'Content-Type' : 'application/json',

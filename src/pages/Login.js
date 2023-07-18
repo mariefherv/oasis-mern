@@ -1,11 +1,12 @@
 
 import { useContext, useEffect, useState } from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Modal, Spinner } from 'react-bootstrap';
 // import { useMediaQuery } from 'react-responsive';
 import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import '../index.css';
+import Typewriter from 'typewriter-effect';
 
 export default function Login() {
     const {user, setUser} = useContext(UserContext)
@@ -20,12 +21,15 @@ export default function Login() {
 
     const [isActive, setIsActive] = useState(false)
 
+    const [loading, setLoading] = useState(false)
+
     const location = useNavigate()
 
     function loginUser(e) {
         e.preventDefault()
+        setLoading(true)
         
-        fetch('http://localhost:4000/user/login', {
+        fetch('https://oasis-api-nocv.onrender.com/user/login', {
 
         method : 'POST',
         headers : {
@@ -88,7 +92,7 @@ export default function Login() {
     }
 
     const retrieveUserDetails = (token) =>{
-        fetch('http://localhost:4000/user/getUserDetails',{
+        fetch('https://oasis-api-nocv.onrender.com/user/getUserDetails',{
         headers : {
             Authorization: `Bearer ${token}`
         }
@@ -111,7 +115,7 @@ export default function Login() {
                     gender: null,
 				})
 			}
-        })
+        }).then(setLoading(false))
         
     }
 
@@ -147,6 +151,21 @@ export default function Login() {
                     Sign In
                 </button>
             </Form>
+
+        <Modal show={loading} size="md" className='d-flex mt-auto loading' centered>
+            <Spinner className="align-self-center"/>
+            <div className="mt-2">
+                <Typewriter 
+                    options={{
+                        strings: ['please wait a moment...'],
+                        autoStart: true,
+                        loop: true,
+                        delay: 100,
+                        deleteSpeed: .10,
+                    }}
+                />
+            </div>
+        </Modal>
         </Container>
         </div>   
         )

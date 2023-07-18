@@ -100,7 +100,7 @@ export default function AddSlots() {
 
         for(let i in datesArray) {
             for(let j in timesArray) {
-                fetch(`http://localhost:4000/therapist/addSlot`, {
+                fetch(`https://oasis-api-nocv.onrender.com/therapist/addSlot`, {
                     method : 'POST',
                     headers : {
                         'Content-Type' : 'application/json',
@@ -119,7 +119,7 @@ export default function AddSlots() {
         }
 
         if(checkAllTrue(arr)){
-            fetch(`http://localhost:4000/therapist/notification`, {
+            fetch(`https://oasis-api-nocv.onrender.com/therapist/notification`, {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',

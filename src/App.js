@@ -1,12 +1,6 @@
 import './index.css';
 import { UserProvider } from './UserContext';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-// import {
-//     createBrowserRouter,
-//     createRoutesFromElements,
-//     Route,
-//     RouterProvider
-// } from "react-router-dom";
 import Welcome from './pages/Welcome';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -26,8 +20,12 @@ import About from './pages/About';
 import { TherapistProvider } from './TherapistContext'
 import Admin from "./pages/Admin";
 import Error from "./pages/Error";
+import Typewriter from 'typewriter-effect';
+import { Modal, Spinner } from 'react-bootstrap';
 
 function App() {
+
+  const [ loading, setLoading ] = useState(false)
 
   const [user, setUser] = useState({
     id: null,
@@ -75,7 +73,8 @@ function App() {
 	};
 
   useEffect(() => {
-		fetch('http://localhost:4000/user/getUserDetails',{
+    setLoading(true)
+		fetch('https://oasis-api-nocv.onrender.com/user/getUserDetails',{
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			}
@@ -110,10 +109,11 @@ function App() {
           has_notifications: null
 				})
 			}
-		})
+		}).then(setLoading(false))
 
     if(user.role === 'Therapist' ){
-      fetch('http://localhost:4000/therapist/view',{
+      setLoading(true)
+      fetch('https://oasis-api-nocv.onrender.com/therapist/view',{
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			}
@@ -150,29 +150,10 @@ function App() {
           li_link: null
 				})
 			}
-		})
+		}).then(setLoading(false))
     }
 	}, [user.role, user.has_notifications])
 
-    // const router = createBrowserRouter(
-    //     createRoutesFromElements(
-    //         <Route >
-    //             <Route exact path="/" element={<Welcome/>}/>
-    //             <Route exact path="/about" element={<About/>}/>
-    //             <Route exact path="/register" element={<Register/>}/>
-    //             <Route exact path="/login" element={<Login/>}/>
-    //             <Route exact path="/home" element={<Home/>}/>
-    //             <Route exact path="/user/:user_id" element={<User/>}/>
-    //             {user.role === 'Therapist' && <Route exact path="/therapist" element={<Therapist/>}/>}
-    //             {user.role === 'Admin' && <Route exact path="/admin" element={<Admin />}/>}
-    //             <Route exact path="/post/:post_id" element={<PostDetail/>}/>
-    //             <Route exact path="/counselling" element={<Counselling/>}/>
-    //             <Route exact path="/logout" element={<Logout/>}/>
-    //             <Route exact path="/chats/:contact_id" element={<Messaging/>}/>
-    //             <Route exact path="/*" element={<Error/>}/>
-    //         </Route>
-    //     )
-    // );
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
     <UserProvider value={{user, setUser, unsetUser}}>
@@ -194,6 +175,20 @@ function App() {
                 <Route exact path="/chats/:contact_id" element={<Messaging/>}/>
                 <Route exact path="/*" element={<Error/>}/>
           </Routes>
+          <Modal show={loading} size="md" className='d-flex mt-auto loading' centered>
+                <Spinner className="align-self-center"/>
+                <div className="mt-2">
+                    <Typewriter 
+                        options={{
+                            strings: ['please wait a moment...'],
+                            autoStart: true,
+                            loop: true,
+                            delay: 100,
+                            deleteSpeed: .10,
+                        }}
+                    />
+                </div>
+            </Modal>
         </Router>
     </PostProvider>
     </TherapistProvider>

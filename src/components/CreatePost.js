@@ -47,7 +47,7 @@ export default function CreatePost() {
     function createPost(e) {
         e.preventDefault()
 
-        fetch(`http://localhost:4000/post/create`, {
+        fetch(`https://oasis-api-nocv.onrender.com/post/create`, {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',

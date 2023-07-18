@@ -22,7 +22,7 @@ export default function PostDetail() {
 
     useEffect(() => {
 
-        fetch(`http://localhost:4000/post/view/${post_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/post/view/${post_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -35,7 +35,7 @@ export default function PostDetail() {
         if(data.length !== 0) setPost(<PostCards postProp={data[0]} minimize={false}/>)
         })})
         
-        fetch(`http://localhost:4000/post/comment/${post_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/post/comment/${post_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
