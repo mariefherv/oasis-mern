@@ -229,13 +229,10 @@ export default function UserPostItem({postProp}){
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 },
                 }).then(res => res.json())
-                .theAuthorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
-                        "Access-Control-Allow-Credentials" : true,
-                        "status" : 200
-                    data ? Swal.fire('Post Deleted!', '', 'success')
-                    : Swal.fire('Oh no! Something went wrong :(', '', 'error')
-                })
+                .then(data => {
+                data ? Swal.fire('Post Deleted!', '', 'success')
+                : Swal.fire('Oh no! Something went wrong :(', '', 'error')
+            })
             }
         })
     }
