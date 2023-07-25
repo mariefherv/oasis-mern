@@ -57,7 +57,10 @@ export default function TherapistCard({therapistProp}){
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 body: JSON.stringify({
                     date: dayjs(date).format('YYYY-MM-DD'),
@@ -79,7 +82,10 @@ export default function TherapistCard({therapistProp}){
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 body: JSON.stringify({
                     therapist_id: therapist_id,
@@ -142,7 +148,10 @@ export default function TherapistCard({therapistProp}){
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 body: JSON.stringify({
                     date: dayjs(date).format('YYYY-MM-DD'),
@@ -164,7 +173,10 @@ export default function TherapistCard({therapistProp}){
                     method : 'GET',
                     headers : {
                         'Content-Type' : 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     }
                     }).then(res => res.json())
                     .then(data => {
@@ -174,7 +186,10 @@ export default function TherapistCard({therapistProp}){
                     method : 'GET',
                     headers : {
                         'Content-Type' : 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     }
                     }).then(res => res.json())
                     .then(data => {

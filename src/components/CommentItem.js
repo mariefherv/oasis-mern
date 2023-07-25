@@ -37,7 +37,10 @@ export default function CommentItem({commentProp}){
         fetch(`http://127.0.0.1:4000/post/comment/checkLike/${comment_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -50,7 +53,10 @@ export default function CommentItem({commentProp}){
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             }).then(res => res.json())
             .then(data => {
@@ -66,7 +72,10 @@ export default function CommentItem({commentProp}){
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         body: JSON.stringify({
             comment_user_id: user_id
@@ -84,7 +93,10 @@ export default function CommentItem({commentProp}){
         method : 'DELETE',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         }).then(res => res.json())
         .then(data => {

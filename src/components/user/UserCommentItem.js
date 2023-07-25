@@ -19,7 +19,10 @@ const UserCommentItem = ({commentProp, likePage}) => {
         fetch(`https://oasis-api-nocv.onrender.com/post/view/${p_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -31,7 +34,10 @@ const UserCommentItem = ({commentProp, likePage}) => {
         fetch(`http://127.0.0.1:4000/post/comment/checkLike/${c_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -44,7 +50,10 @@ const UserCommentItem = ({commentProp, likePage}) => {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             }).then(res => res.json())
             .then(data => {
@@ -59,7 +68,10 @@ const UserCommentItem = ({commentProp, likePage}) => {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         }).then(res => res.json())
         .then(data => {
@@ -74,7 +86,10 @@ const UserCommentItem = ({commentProp, likePage}) => {
         method : 'DELETE',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         }).then(res => res.json())
         .then(data => {

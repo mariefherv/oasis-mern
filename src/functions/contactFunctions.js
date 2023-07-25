@@ -14,7 +14,10 @@ export function addContact(user_id) {
             method : 'PUT',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             }
             }).then(res => res.json())
             .then(data => {
@@ -66,7 +69,10 @@ export function removeContact(user_id) {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 }
                 }).then(res => res.json())
                 .then(data => {
@@ -119,7 +125,10 @@ export function blockContact(user_id) {
                 method : 'PUT',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 }
                 }).then(res => res.json())
                 .then(data => {
@@ -172,7 +181,10 @@ export function unblockContact(user_id) {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 }
                 }).then(res => res.json())
                 .then(data => {
@@ -225,7 +237,10 @@ export function confirmContact(user_id) {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 }).then(res => res.json())
                 .then(data => {
@@ -277,7 +292,10 @@ export function declineContact(user_id) {
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 }).then(res => res.json())
                 .then(data => {
@@ -330,7 +348,10 @@ export function cancelContact(user_id) {
                 method : 'DELETE',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 }
                 }).then(res => res.json())
                 .then(data => {

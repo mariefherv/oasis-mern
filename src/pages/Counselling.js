@@ -65,7 +65,10 @@ export default function Counselling() {
         fetch(`http://127.0.0.1:4000/therapist/${view}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -82,7 +85,10 @@ export default function Counselling() {
         fetch(`https://oasis-api-nocv.onrender.com/booking/retrieveConfirmedBookings`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -103,7 +109,10 @@ export default function Counselling() {
         fetch(`https://oasis-api-nocv.onrender.com/booking/retrievePastBookings`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )

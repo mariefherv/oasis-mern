@@ -30,7 +30,10 @@ export default function Notifications() {
         fetch(`http://127.0.0.1:4000/notifications/viewUnread`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -58,7 +61,10 @@ export default function Notifications() {
         fetch(`http://127.0.0.1:4000/notifications/viewAll`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )

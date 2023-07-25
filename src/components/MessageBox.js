@@ -29,7 +29,10 @@ export default function MessageBox({status, blocked_by}) {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             }}).then(res => res.json())
             .then(data => {
                 if(data){
@@ -37,7 +40,10 @@ export default function MessageBox({status, blocked_by}) {
                         method : 'POST',
                         headers : {
                             'Content-Type' : 'application/json',
-                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                         },
                         body: JSON.stringify({
                             content: message,
@@ -82,7 +88,10 @@ export default function MessageBox({status, blocked_by}) {
         fetch(`https://oasis-api-nocv.onrender.com/contact/viewMessages/${params.contact_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -98,7 +107,10 @@ export default function MessageBox({status, blocked_by}) {
         fetch(`https://oasis-api-nocv.onrender.com/contact/markRead/${params.contact_id}`,
         {method: 'PATCH',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )

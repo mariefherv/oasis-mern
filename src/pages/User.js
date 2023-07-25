@@ -97,7 +97,10 @@ export default function User() {
             fetch(`https://oasis-api-nocv.onrender.com/contact/view/${user_id}`,
             {method: 'GET',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             }
             }
             )
@@ -113,7 +116,10 @@ export default function User() {
         fetch(`https://oasis-api-nocv.onrender.com/post/viewByUser/${user_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -128,7 +134,10 @@ export default function User() {
         fetch(`https://oasis-api-nocv.onrender.com/post/viewCommentsByUser/${user_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -145,7 +154,10 @@ export default function User() {
         fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -165,7 +177,10 @@ export default function User() {
         fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -185,7 +200,10 @@ export default function User() {
         fetch(`https://oasis-api-nocv.onrender.com/post/viewAllLikedCommentsPosts/${user_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -205,7 +223,10 @@ export default function User() {
         fetch(`https://oasis-api-nocv.onrender.com/post/countUserLikes/${user_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -252,7 +273,10 @@ export default function User() {
             fetch(`https://oasis-api-nocv.onrender.com/user/getUser/${user_id}`,
             {method: 'GET',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             }
             }
             )
@@ -326,7 +350,10 @@ export default function User() {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             body: JSON.stringify({
                 subject: subject,
@@ -387,7 +414,10 @@ export default function User() {
                     method : 'PATCH',
                     headers : {
                         'Content-Type' : 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     },
                     body: JSON.stringify({
                         username: new_username,

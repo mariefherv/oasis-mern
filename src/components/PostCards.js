@@ -76,7 +76,10 @@ export default function PostCards({postProp, minimize}) {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             }).then(res => res.json())
             .then(data => {
@@ -90,7 +93,10 @@ export default function PostCards({postProp, minimize}) {
         fetch(`https://oasis-api-nocv.onrender.com/post/checkLike/${p_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -103,7 +109,10 @@ export default function PostCards({postProp, minimize}) {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             }).then(res => res.json())
             .then(data => {
@@ -125,7 +134,10 @@ export default function PostCards({postProp, minimize}) {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         body: JSON.stringify({
             post_user_id: user_id
@@ -143,7 +155,10 @@ export default function PostCards({postProp, minimize}) {
         method : 'DELETE',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         }).then(res => res.json())
         .then(data => {
@@ -159,7 +174,10 @@ export default function PostCards({postProp, minimize}) {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             body: JSON.stringify({
                 content: comment,
@@ -205,7 +223,10 @@ export default function PostCards({postProp, minimize}) {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             body: JSON.stringify({
                 type: report,
@@ -283,7 +304,10 @@ export default function PostCards({postProp, minimize}) {
                     method : 'PUT',
                     headers : {
                         'Content-Type' : 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     },
                     body: JSON.stringify({
                         subject: new_subject,
@@ -348,7 +372,10 @@ export default function PostCards({postProp, minimize}) {
                 method : 'DELETE',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 }).then(res => res.json())
                 .then(data => {

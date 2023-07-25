@@ -40,7 +40,10 @@ function UserManagementItem({userProp}) {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 body: JSON.stringify({
                     first_name: new_first_name,
@@ -88,7 +91,10 @@ function UserManagementItem({userProp}) {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 body: JSON.stringify({
                     role: value
@@ -146,7 +152,10 @@ function UserManagementItem({userProp}) {
                     method : 'PATCH',
                     headers : {
                         'Content-Type' : 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     }
                     }).then(res => res.json())
                     .then(data => {
@@ -204,7 +213,10 @@ function UserManagementItem({userProp}) {
                     method : 'PATCH',
                     headers : {
                         'Content-Type' : 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     }
                     }).then(res => res.json())
                     .then(data => {
@@ -501,7 +513,10 @@ function PostManagementItem({postProp}) {
                 method : 'DELETE',
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                 },
                 }).then(res => res.json())
                 .then(data => {
@@ -519,7 +534,10 @@ function PostManagementItem({postProp}) {
         fetch(`http://127.0.0.1:4000/admin/viewReports/${p_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -594,7 +612,10 @@ export default function Admin() {
         fetch(`https://oasis-api-nocv.onrender.com/admin/${keywordUser === '' ? `getUsers` : `getUsersSearch/${keywordUser}`}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -608,7 +629,10 @@ export default function Admin() {
         fetch(`https://oasis-api-nocv.onrender.com/admin/${keywordPost === '' ? `getPosts` : `getPostsSearch/${keywordPost}`}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )

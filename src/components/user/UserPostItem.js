@@ -43,7 +43,10 @@ export default function UserPostItem({postProp}){
         fetch(`https://oasis-api-nocv.onrender.com/post/checkLike/${p_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -56,7 +59,10 @@ export default function UserPostItem({postProp}){
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             }).then(res => res.json())
             .then(data => {
@@ -66,7 +72,10 @@ export default function UserPostItem({postProp}){
         fetch(`https://oasis-api-nocv.onrender.com/post/checkLike/${p_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         }
         )
@@ -79,7 +88,10 @@ export default function UserPostItem({postProp}){
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
             },
             }).then(res => res.json())
             .then(data => {
@@ -97,7 +109,10 @@ export default function UserPostItem({postProp}){
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         }).then(res => res.json())
         .then(data => {
@@ -112,7 +127,10 @@ export default function UserPostItem({postProp}){
         method : 'DELETE',
         headers : {
             'Content-Type' : 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         },
         }).then(res => res.json())
         .then(data => {
@@ -141,7 +159,10 @@ export default function UserPostItem({postProp}){
                     method : 'PUT',
                     headers : {
                         'Content-Type' : 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     },
                     body: JSON.stringify({
                         subject: new_subject,
@@ -208,7 +229,10 @@ export default function UserPostItem({postProp}){
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 },
                 }).then(res => res.json())
-                .then(data => {
+                .theAuthorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
                     data ? Swal.fire('Post Deleted!', '', 'success')
                     : Swal.fire('Oh no! Something went wrong :(', '', 'error')
                 })

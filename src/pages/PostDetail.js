@@ -25,7 +25,10 @@ export default function PostDetail() {
         fetch(`https://oasis-api-nocv.onrender.com/post/view/${post_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         })
         .then(res => res.json())
@@ -38,7 +41,10 @@ export default function PostDetail() {
         fetch(`https://oasis-api-nocv.onrender.com/post/comment/${post_id}`,
         {method: 'GET',
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
         }
         })
         .then(res => res.json())

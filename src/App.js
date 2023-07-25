@@ -76,7 +76,10 @@ function App() {
     setLoading(true)
 		fetch('https://oasis-api-nocv.onrender.com/user/getUserDetails',{
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem('token')}`
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
 			}
 		}).then(res => res.json())
 		.then(data =>{
@@ -115,7 +118,10 @@ function App() {
       setLoading(true)
       fetch('https://oasis-api-nocv.onrender.com/therapist/view',{
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem('token')}`
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
 			}
 		}).then(res => res.json())
 		.then(data =>{
