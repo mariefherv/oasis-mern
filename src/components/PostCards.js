@@ -368,7 +368,7 @@ export default function PostCards({postProp, minimize}) {
         }).then((result) => {
             if (result.isConfirmed) {
                 setLoading(true)
-                fetch(`http://127.0.0.1:4000/post/delete/${p_id}`, {
+                fetch(`https://oasis-api-nocv.onrender.com/post/delete/${p_id}`, {
                 method : 'DELETE',
                 headers : {
                     'Content-Type' : 'application/json',

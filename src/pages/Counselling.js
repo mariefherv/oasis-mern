@@ -62,7 +62,7 @@ export default function Counselling() {
             setView(`viewAll`)
         }
 
-        fetch(`http://127.0.0.1:4000/therapist/${view}`,
+        fetch(`https://oasis-api-nocv.onrender.com/therapist/${view}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

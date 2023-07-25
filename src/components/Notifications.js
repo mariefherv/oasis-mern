@@ -27,7 +27,7 @@ export default function Notifications() {
     function retrieveUnread(e){
         e.preventDefault()
         
-        fetch(`http://127.0.0.1:4000/notifications/viewUnread`,
+        fetch(`https://oasis-api-nocv.onrender.com/notifications/viewUnread`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -58,7 +58,7 @@ export default function Notifications() {
     function retrieveNotifications(e){
         setNotificationsLoading(true)
 
-        fetch(`http://127.0.0.1:4000/notifications/viewAll`,
+        fetch(`https://oasis-api-nocv.onrender.com/notifications/viewAll`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

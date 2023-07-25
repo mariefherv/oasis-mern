@@ -39,7 +39,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:4000/post/viewAllBy${view}`,
+        fetch(`https://oasis-api-nocv.onrender.com/post/viewAllBy${view}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

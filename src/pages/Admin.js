@@ -509,7 +509,7 @@ function PostManagementItem({postProp}) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://127.0.0.1:4000/admin/deletePost/${p_id}`, {
+                fetch(`https://oasis-api-nocv.onrender.com/admin/deletePost/${p_id}`, {
                 method : 'DELETE',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -531,7 +531,7 @@ function PostManagementItem({postProp}) {
         openModal()
         setReportsLoading(true)
 
-        fetch(`http://127.0.0.1:4000/admin/viewReports/${p_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/admin/viewReports/${p_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

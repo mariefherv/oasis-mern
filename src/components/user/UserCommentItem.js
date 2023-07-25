@@ -31,7 +31,7 @@ const UserCommentItem = ({commentProp, likePage}) => {
             setTitle(data[0].subject)
         })
 
-        fetch(`http://127.0.0.1:4000/post/comment/checkLike/${c_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/post/comment/checkLike/${c_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -46,7 +46,7 @@ const UserCommentItem = ({commentProp, likePage}) => {
             data.length !== 0 ? setLove(true) : setLove(false)
         })
 
-        fetch(`http://127.0.0.1:4000/post/comment/countLikes/${c_id}`, {
+        fetch(`https://oasis-api-nocv.onrender.com/post/comment/countLikes/${c_id}`, {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
@@ -64,7 +64,7 @@ const UserCommentItem = ({commentProp, likePage}) => {
     function likeComment(e) {
         e.preventDefault()
 
-        fetch(`http://127.0.0.1:4000/post/comment/like/${c_id}`, {
+        fetch(`https://oasis-api-nocv.onrender.com/post/comment/like/${c_id}`, {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json',
@@ -82,7 +82,7 @@ const UserCommentItem = ({commentProp, likePage}) => {
     function unlikeComment(e) {
         e.preventDefault()
 
-        fetch(`http://127.0.0.1:4000/post/comment/unlike/${c_id}`, {
+        fetch(`https://oasis-api-nocv.onrender.com/post/comment/unlike/${c_id}`, {
         method : 'DELETE',
         headers : {
             'Content-Type' : 'application/json',
