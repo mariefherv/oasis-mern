@@ -72,7 +72,7 @@ export default function PostCards({postProp, minimize}) {
 
     useEffect(() => {
         if(user_id !== user.id) {
-            fetch(`https://oasis-api-nocv.onrender.com/contact/view/${user_id}`, {
+            fetch(`http://localhost:4000/contact/view/${user_id}`, {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
@@ -87,7 +87,7 @@ export default function PostCards({postProp, minimize}) {
         })
         }
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/checkLike/${p_id}`,
+        fetch(`http://localhost:4000/post/checkLike/${p_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -99,7 +99,7 @@ export default function PostCards({postProp, minimize}) {
             data.length !== 0 ? setLove(true) : setLove(false)
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/countLikes/${p_id}`, {
+        fetch(`http://localhost:4000/post/countLikes/${p_id}`, {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
@@ -121,7 +121,7 @@ export default function PostCards({postProp, minimize}) {
     function likePost(e) {
         e.preventDefault()
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/like/${p_id}`, {
+        fetch(`http://localhost:4000/post/like/${p_id}`, {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json',
@@ -139,7 +139,7 @@ export default function PostCards({postProp, minimize}) {
     function unlikePost(e) {
         e.preventDefault()
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/unlike/${p_id}`, {
+        fetch(`http://localhost:4000/post/unlike/${p_id}`, {
         method : 'DELETE',
         headers : {
             'Content-Type' : 'application/json',
@@ -155,7 +155,7 @@ export default function PostCards({postProp, minimize}) {
         e.preventDefault()
         setLoading(true)
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/comment/${p_id}`, {
+        fetch(`http://localhost:4000/post/comment/${p_id}`, {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
@@ -201,7 +201,7 @@ export default function PostCards({postProp, minimize}) {
         e.preventDefault()
         setLoading(true)
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/report/${p_id}`, {
+        fetch(`http://localhost:4000/post/report/${p_id}`, {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
@@ -279,7 +279,7 @@ export default function PostCards({postProp, minimize}) {
         }).then((result) => {
             if (result.isConfirmed) {
                 setLoading(true)
-                fetch(`https://oasis-api-nocv.onrender.com/post/edit/${p_id}`, {
+                fetch(`http://localhost:4000/post/edit/${p_id}`, {
                     method : 'PUT',
                     headers : {
                         'Content-Type' : 'application/json',

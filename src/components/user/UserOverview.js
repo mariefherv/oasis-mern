@@ -20,7 +20,7 @@ export default function UserOverview() {
     const [view, setView] = useState(getUrl ? getUrl : 'Recent')
 
     useEffect(() => {
-        fetch(`https://oasis-api-nocv.onrender.com/post/viewAllCommentsPostsBy${view}/${user_id}`,
+        fetch(`http://localhost:4000/post/viewAllCommentsPostsBy${view}/${user_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

@@ -40,7 +40,7 @@ export default function UserPostItem({postProp}){
     const time = dayjs(date_time).fromNow()
 
     useEffect(() => {
-        fetch(`https://oasis-api-nocv.onrender.com/post/checkLike/${p_id}`,
+        fetch(`http://localhost:4000/post/checkLike/${p_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -52,7 +52,7 @@ export default function UserPostItem({postProp}){
             data.length !== 0 ? setLove(true) : setLove(false)
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/countLikes/${p_id}`, {
+        fetch(`http://localhost:4000/post/countLikes/${p_id}`, {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
@@ -63,7 +63,7 @@ export default function UserPostItem({postProp}){
                 data[0].count !== 0 ? setCount(data[0].count) : setCount("")
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/checkLike/${p_id}`,
+        fetch(`http://localhost:4000/post/checkLike/${p_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -75,7 +75,7 @@ export default function UserPostItem({postProp}){
             data.length !== 0 ? setLove(true) : setLove(false)
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/countLikes/${p_id}`, {
+        fetch(`http://localhost:4000/post/countLikes/${p_id}`, {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
@@ -93,7 +93,7 @@ export default function UserPostItem({postProp}){
     function likePost(e) {
         e.preventDefault()
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/like/${p_id}`, {
+        fetch(`http://localhost:4000/post/like/${p_id}`, {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json',
@@ -108,7 +108,7 @@ export default function UserPostItem({postProp}){
     function unlikePost(e) {
         e.preventDefault()
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/unlike/${p_id}`, {
+        fetch(`http://localhost:4000/post/unlike/${p_id}`, {
         method : 'DELETE',
         headers : {
             'Content-Type' : 'application/json',
@@ -137,7 +137,7 @@ export default function UserPostItem({postProp}){
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://oasis-api-nocv.onrender.com/post/edit/${p_id}`, {
+                fetch(`http://localhost:4000/post/edit/${p_id}`, {
                     method : 'PUT',
                     headers : {
                         'Content-Type' : 'application/json',

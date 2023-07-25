@@ -53,7 +53,7 @@ export default function TherapistCard({therapistProp}){
         event.preventDefault();
         if(currentStep === 2) {
             setCurrentStep(currentStep + 1);
-            fetch(`https://oasis-api-nocv.onrender.com/therapist/getSlotsByDate/${therapist_id}`, {
+            fetch(`http://localhost:4000/therapist/getSlotsByDate/${therapist_id}`, {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -75,7 +75,7 @@ export default function TherapistCard({therapistProp}){
             setCurrentStep(currentStep + 1);
         } else {
             setLoading(true)
-            fetch(`https://oasis-api-nocv.onrender.com/booking/bookSlot/${slot_id}`, {
+            fetch(`http://localhost:4000/booking/bookSlot/${slot_id}`, {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -138,7 +138,7 @@ export default function TherapistCard({therapistProp}){
         time !== null && date !== null ? setActive(true) : setActive(false)
 
         if(date !== null) {
-            fetch(`https://oasis-api-nocv.onrender.com/therapist/getTimeSlotByDate/${therapist_id}`, {
+            fetch(`http://localhost:4000/therapist/getTimeSlotByDate/${therapist_id}`, {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -160,7 +160,7 @@ export default function TherapistCard({therapistProp}){
                         )
                 }
 
-            fetch(`https://oasis-api-nocv.onrender.com/therapist/getDays/${therapist_id}`, {
+            fetch(`http://localhost:4000/therapist/getDays/${therapist_id}`, {
                     method : 'GET',
                     headers : {
                         'Content-Type' : 'application/json',
@@ -170,7 +170,7 @@ export default function TherapistCard({therapistProp}){
                     .then(data => {
                         setDays(data)})
 
-            fetch(`https://oasis-api-nocv.onrender.com/therapist/checkSlots/${therapist_id}`, {
+            fetch(`http://localhost:4000/therapist/checkSlots/${therapist_id}`, {
                     method : 'GET',
                     headers : {
                         'Content-Type' : 'application/json',

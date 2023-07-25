@@ -36,7 +36,7 @@ function UserManagementItem({userProp}) {
 
     function handleSubmit() {
         if(value === 'Therapist') {
-            fetch(`https://oasis-api-nocv.onrender.com/admin/toTherapist/${user_id}`, {
+            fetch(`http://localhost:4000/admin/toTherapist/${user_id}`, {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -84,7 +84,7 @@ function UserManagementItem({userProp}) {
                 })
             })
         } else {
-            fetch(`https://oasis-api-nocv.onrender.com/admin/updateRole/${user_id}`, {
+            fetch(`http://localhost:4000/admin/updateRole/${user_id}`, {
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json',
@@ -142,7 +142,7 @@ function UserManagementItem({userProp}) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://oasis-api-nocv.onrender.com/admin/banUser/${user_id}`, {
+                fetch(`http://localhost:4000/admin/banUser/${user_id}`, {
                     method : 'PATCH',
                     headers : {
                         'Content-Type' : 'application/json',
@@ -200,7 +200,7 @@ function UserManagementItem({userProp}) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://oasis-api-nocv.onrender.com/admin/unbanUser/${user_id}`, {
+                fetch(`http://localhost:4000/admin/unbanUser/${user_id}`, {
                     method : 'PATCH',
                     headers : {
                         'Content-Type' : 'application/json',
@@ -591,7 +591,7 @@ export default function Admin() {
 
 
     useEffect(() => {
-        fetch(`https://oasis-api-nocv.onrender.com/admin/${keywordUser === '' ? `getUsers` : `getUsersSearch/${keywordUser}`}`,
+        fetch(`http://localhost:4000/admin/${keywordUser === '' ? `getUsers` : `getUsersSearch/${keywordUser}`}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -605,7 +605,7 @@ export default function Admin() {
             }))
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/admin/${keywordPost === '' ? `getPosts` : `getPostsSearch/${keywordPost}`}`,
+        fetch(`http://localhost:4000/admin/${keywordPost === '' ? `getPosts` : `getPostsSearch/${keywordPost}`}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

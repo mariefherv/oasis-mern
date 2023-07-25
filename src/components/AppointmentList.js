@@ -32,7 +32,7 @@ export default function AppointmentList(){
 
     useEffect(() => {
         setHumanizedDate(dayjs(new Date(date)).format('MMMM DD'))
-        fetch(`https://oasis-api-nocv.onrender.com/booking/getSlotsBy${key}/${therapist.therapist_id}`,
+        fetch(`http://localhost:4000/booking/getSlotsBy${key}/${therapist.therapist_id}`,
             {method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',

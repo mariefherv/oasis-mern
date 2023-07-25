@@ -39,7 +39,7 @@ export default function Booking({bookingProp, tab}){
         e.preventDefault()
         setLoading(true)
 
-        fetch(`https://oasis-api-nocv.onrender.com/booking/confirmBooking/${booking_id}`, {
+        fetch(`http://localhost:4000/booking/confirmBooking/${booking_id}`, {
             method : 'PATCH',
             headers : {
                 'Content-Type' : 'application/json',
@@ -85,7 +85,7 @@ export default function Booking({bookingProp, tab}){
         e.preventDefault()
         setLoading(true)
 
-        fetch(`https://oasis-api-nocv.onrender.com/booking/denyBooking/${booking_id}`, {
+        fetch(`http://localhost:4000/booking/denyBooking/${booking_id}`, {
             method : 'PATCH',
             headers : {
                 'Content-Type' : 'application/json',

@@ -29,7 +29,7 @@ export default function Login() {
         e.preventDefault()
         setLoading(true)
         
-        fetch('https://oasis-api-nocv.onrender.com/user/login', {
+        fetch('http://localhost:4000/user/login', {
 
         method : 'POST',
         headers : {
@@ -92,7 +92,7 @@ export default function Login() {
     }
 
     const retrieveUserDetails = (token) =>{
-        fetch('https://oasis-api-nocv.onrender.com/user/getUserDetails',{
+        fetch('http://localhost:4000/user/getUserDetails',{
         headers : {
             Authorization: `Bearer ${token}`
         }

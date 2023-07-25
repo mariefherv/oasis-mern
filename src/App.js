@@ -74,7 +74,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true)
-		fetch('https://oasis-api-nocv.onrender.com/user/getUserDetails',{
+		fetch('http://localhost:4000/user/getUserDetails',{
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			}
@@ -113,7 +113,7 @@ function App() {
 
     if(user.role === 'Therapist' ){
       setLoading(true)
-      fetch('https://oasis-api-nocv.onrender.com/therapist/view',{
+      fetch('http://localhost:4000/therapist/view',{
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			}

@@ -94,7 +94,7 @@ export default function User() {
 
     useEffect(() => {
         if(user_id !== user.id) {
-            fetch(`https://oasis-api-nocv.onrender.com/contact/view/${user_id}`,
+            fetch(`http://localhost:4000/contact/view/${user_id}`,
             {method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -110,7 +110,7 @@ export default function User() {
             })
         }
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/viewByUser/${user_id}`,
+        fetch(`http://localhost:4000/post/viewByUser/${user_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -125,7 +125,7 @@ export default function User() {
                 )))
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/viewCommentsByUser/${user_id}`,
+        fetch(`http://localhost:4000/post/viewCommentsByUser/${user_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -142,7 +142,7 @@ export default function User() {
                 : setComments(null)
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
+        fetch(`http://localhost:4000/contact/viewAll`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -162,7 +162,7 @@ export default function User() {
         }))
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
+        fetch(`http://localhost:4000/contact/viewAll`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -182,7 +182,7 @@ export default function User() {
         }))
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/viewAllLikedCommentsPosts/${user_id}`,
+        fetch(`http://localhost:4000/post/viewAllLikedCommentsPosts/${user_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -202,7 +202,7 @@ export default function User() {
                 : setLiked(null)
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/countUserLikes/${user_id}`,
+        fetch(`http://localhost:4000/post/countUserLikes/${user_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -217,7 +217,7 @@ export default function User() {
     }, [new_username, user.id, user.username, user_id, usernameExists, status, contacts])
 
     useEffect(() => {
-        fetch('https://oasis-api-nocv.onrender.com/user/checkUsername', {
+        fetch('http://localhost:4000/user/checkUsername', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -249,7 +249,7 @@ export default function User() {
     }, [isValidFB, isValidLi, isValidTwt, new_fb_link, new_li_link, new_twt_link])
 
     useEffect(() => {
-            fetch(`https://oasis-api-nocv.onrender.com/user/getUser/${user_id}`,
+            fetch(`http://localhost:4000/user/getUser/${user_id}`,
             {method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -322,7 +322,7 @@ export default function User() {
     function createPost(e) {
         e.preventDefault()
 
-        fetch(`https://oasis-api-nocv.onrender.com/post/create`, {
+        fetch(`http://localhost:4000/post/create`, {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
@@ -383,7 +383,7 @@ export default function User() {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://oasis-api-nocv.onrender.com/user/editDetails`, {
+                fetch(`http://localhost:4000/user/editDetails`, {
                     method : 'PATCH',
                     headers : {
                         'Content-Type' : 'application/json',

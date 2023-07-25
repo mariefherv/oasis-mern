@@ -47,7 +47,7 @@ export default function Register() {
             username.match(valid_username) ? setValidUsername(true) : setValidUsername(false)
 
             // check if username already exists
-            fetch('https://oasis-api-nocv.onrender.com/user/checkUsername', {
+            fetch('http://localhost:4000/user/checkUsername', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -75,7 +75,7 @@ export default function Register() {
             }
 
             // check if email already exists
-            fetch('https://oasis-api-nocv.onrender.com/user/checkEmail', {
+            fetch('http://localhost:4000/user/checkEmail', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -112,7 +112,7 @@ export default function Register() {
         e.preventDefault()
         setLoading(true)
 
-        fetch('https://oasis-api-nocv.onrender.com/user/register', {
+        fetch('http://localhost:4000/user/register', {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json'

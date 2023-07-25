@@ -33,9 +33,11 @@ export default function Messaging() {
     const [prefix, setPrefix] = useState('')
     const [last_name, setLastName] = useState('')
     const [suffix, setSuffix] = useState('')
+
+    // const [loading, setLoading] = useState(true)
     
     useEffect(() => {
-        fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
+        fetch(`http://localhost:4000/contact/viewAll`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -51,7 +53,7 @@ export default function Messaging() {
             }))
         })
 
-        fetch(`https://oasis-api-nocv.onrender.com/contact/viewContactDetails/${contact_id.contact_id}`,
+        fetch(`http://localhost:4000/contact/viewContactDetails/${contact_id.contact_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

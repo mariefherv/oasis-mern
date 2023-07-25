@@ -12,7 +12,7 @@ export default function RightSidebar() {
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect(() => {
-        fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
+        fetch(`http://localhost:4000/contact/viewAll`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
