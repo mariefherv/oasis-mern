@@ -16,7 +16,7 @@ const UserCommentItem = ({commentProp, likePage}) => {
     const time = dayjs(date_time).fromNow()
 
     useEffect(() => {
-        fetch(`http://localhost:4000/post/view/${p_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/post/view/${p_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

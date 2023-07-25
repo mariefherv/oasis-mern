@@ -79,7 +79,7 @@ export default function Counselling() {
         }))
         })
 
-        fetch(`http://localhost:4000/booking/retrieveConfirmedBookings`,
+        fetch(`https://oasis-api-nocv.onrender.com/booking/retrieveConfirmedBookings`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -100,7 +100,7 @@ export default function Counselling() {
         })
         
 
-        fetch(`http://localhost:4000/booking/retrievePastBookings`,
+        fetch(`https://oasis-api-nocv.onrender.com/booking/retrievePastBookings`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

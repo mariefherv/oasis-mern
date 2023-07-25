@@ -98,7 +98,7 @@ const NotificationItem = ({notificationProp, modal}) => {
     function markRead(e){
         e.preventDefault()
 
-        fetch(`http://localhost:4000/notifications/markRead/${notification_id}`, {
+        fetch(`https://oasis-api-nocv.onrender.com/notifications/markRead/${notification_id}`, {
         method : 'PATCH',
         headers : {
             'Content-Type' : 'application/json',
@@ -122,7 +122,7 @@ const NotificationItem = ({notificationProp, modal}) => {
 
     useEffect(() => {
         if(post_id){
-            fetch(`http://localhost:4000/post/view/${post_id}`,
+            fetch(`https://oasis-api-nocv.onrender.com/post/view/${post_id}`,
             {method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -136,7 +136,7 @@ const NotificationItem = ({notificationProp, modal}) => {
         }
 
         if(comment_id){
-            fetch(`http://localhost:4000/post/comment/view/${comment_id}`,
+            fetch(`https://oasis-api-nocv.onrender.com/post/comment/view/${comment_id}`,
             {method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -148,7 +148,7 @@ const NotificationItem = ({notificationProp, modal}) => {
                 if(data.length !== 0){
                     setComment(data[0])
 
-                    fetch(`http://localhost:4000/post/view/${data[0].post_id}`,
+                    fetch(`https://oasis-api-nocv.onrender.com/post/view/${data[0].post_id}`,
                     {method: 'GET',
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`

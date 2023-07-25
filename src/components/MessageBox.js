@@ -25,7 +25,7 @@ export default function MessageBox({status, blocked_by}) {
     function sendMessage(e) {
         e.preventDefault()
         
-        fetch(`http://localhost:4000/contact/viewContactDetails/${params.contact_id}`, {
+        fetch(`https://oasis-api-nocv.onrender.com/contact/viewContactDetails/${params.contact_id}`, {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
@@ -33,7 +33,7 @@ export default function MessageBox({status, blocked_by}) {
             }}).then(res => res.json())
             .then(data => {
                 if(data){
-                    fetch(`http://localhost:4000/contact/sendMessage/${data[0].user_id}`, {
+                    fetch(`https://oasis-api-nocv.onrender.com/contact/sendMessage/${data[0].user_id}`, {
                         method : 'POST',
                         headers : {
                             'Content-Type' : 'application/json',
@@ -79,7 +79,7 @@ export default function MessageBox({status, blocked_by}) {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:4000/contact/viewMessages/${params.contact_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/contact/viewMessages/${params.contact_id}`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -95,7 +95,7 @@ export default function MessageBox({status, blocked_by}) {
             }))
         })
 
-        fetch(`http://localhost:4000/contact/markRead/${params.contact_id}`,
+        fetch(`https://oasis-api-nocv.onrender.com/contact/markRead/${params.contact_id}`,
         {method: 'PATCH',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
