@@ -20,7 +20,7 @@ export default function Counselling() {
     const [therapists, setTherapists] = useState([])
     const [upcomingBookings, setUpcomingBookings] = useState([])
     const [pastBookings, setPastBookings] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [upcomingLoading, setUpcomingLoading] = useState(true)
     const [recentLoading, setRecentLoading] = useState(true)
 
@@ -49,7 +49,33 @@ export default function Counselling() {
         : history(`${location.pathname}`)
     }
 
-    const [view, setView] = useState('')
+    const [view, setView] = useState('viewAll')
+
+    useEffect(() => {
+        setIsLoading(true)
+        fetch(`https://oasis-api-nocv.onrender.com/therapist/${view}`,
+        {method: 'GET',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
+                        "Access-Control-Allow-Credentials" : true,
+                        "status" : 200
+        }
+        }
+        )
+        .then(res => res.json())
+        .then(data => {
+            setIsLoading(false)
+            data.length > 0 ?
+            setTherapists(data.map(therapist => {
+                return(
+                <TherapistCard key={therapist.therapist_id} therapistProp= {therapist}/>            
+            )
+            }))
+            :
+            setTherapists(<em className="text-muted align-self-center">Sorry, we couldn't find a therapist that matches your criteria :(</em>)
+        })
+    }, [view])
     
     useEffect(() => {
         if(consultation !== '' && availability !== '') {
@@ -62,31 +88,11 @@ export default function Counselling() {
             setView(`viewAll`)
         }
 
-        fetch(`https://oasis-api-nocv.onrender.com/therapist/${view}`,
-        {method: 'GET',
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
-                        "Access-Control-Allow-Credentials" : true,
-                        "status" : 200
-        }
-        }
-        )
-        .then(res => res.json())
-        .then(data => {
-            setIsLoading(false)
-            setTherapists(data.map(therapist => {
-                return(
-                <TherapistCard key={therapist.therapist_id} therapistProp= {therapist}/>            
-            )
-        }))
-        })
-
         fetch(`https://oasis-api-nocv.onrender.com/booking/retrieveConfirmedBookings`,
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
         }
@@ -110,7 +116,7 @@ export default function Counselling() {
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
         }
@@ -129,7 +135,7 @@ export default function Counselling() {
             setPastBookings(<small><em> You have no recent consultations.</em></small>)         
 
         })
-    }, [availability, consultation, therapists, view])
+    }, [availability, consultation, therapists])
 
     return (
         <Container fluid>
@@ -145,7 +151,9 @@ export default function Counselling() {
                             <FormSelect id='sort-type'
                             onChange={e => {
                                     sortConsultation(e.target.value)
-                            }}>
+                            }}
+                            defaultValue={consultation}
+                            >
                                 <option value = ''>-- choose consultation type --</option>
                                 <option value = 'online'>online</option>
                                 <option value = 'in_person'> in-person</option>
@@ -156,7 +164,9 @@ export default function Counselling() {
                             <FormSelect id='availability'
                             onChange={e => {
                                     sortAvailability(e.target.value)
-                            }}>
+                            }}
+                            defaultValue={availability}
+                            >
                                 <option value = ''>-- no selected dates --</option>
                                 <option value = 'day'> today </option>
                                 <option value = 'week'> this week </option>

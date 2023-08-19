@@ -15,7 +15,7 @@ export function addContact(user_id) {
             headers : {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
             }
@@ -70,7 +70,7 @@ export function removeContact(user_id) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 }
@@ -126,7 +126,7 @@ export function blockContact(user_id) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 }
@@ -182,7 +182,7 @@ export function unblockContact(user_id) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 }
@@ -238,7 +238,7 @@ export function confirmContact(user_id) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -293,7 +293,7 @@ export function declineContact(user_id) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -349,7 +349,7 @@ export function cancelContact(user_id) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 }

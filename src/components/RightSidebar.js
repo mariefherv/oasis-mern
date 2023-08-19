@@ -16,7 +16,7 @@ export default function RightSidebar() {
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
         }

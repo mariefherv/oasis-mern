@@ -18,7 +18,7 @@ import Therapist from './pages/Therapist';
 import { PostProvider } from './PostContext';
 import About from './pages/About';
 import { TherapistProvider } from './TherapistContext'
-import Admin from "./pages/Admin";
+import Admin from "./components/Admin";
 import Error from "./pages/Error";
 import Typewriter from 'typewriter-effect';
 import { Modal, Spinner } from 'react-bootstrap';
@@ -77,13 +77,13 @@ function App() {
 		fetch('https://oasis-api-nocv.onrender.com/user/getUserDetails',{
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
 			}
 		}).then(res => res.json())
 		.then(data =>{
-			if(typeof data[0].user_id !== "undefined"){
+			if(data[0]){
 				setUser({
 					id: data[0].user_id,
 					username: data[0].username,
@@ -119,7 +119,7 @@ function App() {
       fetch('https://oasis-api-nocv.onrender.com/therapist/view',{
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
 			}

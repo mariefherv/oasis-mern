@@ -27,8 +27,8 @@ export default function TherapistCard({therapistProp}){
     const maxSteps = 3;
     const [currentStep, setCurrentStep] = useState(1);
     const [mode, setMode] = useState('')
-    const [date, setDate] = useState(null)
-    const [time, setTime] = useState(null)
+    const [date, setDate] = useState('')
+    const [time, setTime] = useState('')
     const [openCalendar, setOpenCalendar] = useState(false)
     const [datetime, setDateTime] = useState('')
     const [slot_id, setSlotID] = useState(null)
@@ -58,7 +58,7 @@ export default function TherapistCard({therapistProp}){
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -83,7 +83,7 @@ export default function TherapistCard({therapistProp}){
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -149,7 +149,7 @@ export default function TherapistCard({therapistProp}){
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -174,7 +174,7 @@ export default function TherapistCard({therapistProp}){
                     headers : {
                         'Content-Type' : 'application/json',
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                     }
@@ -187,7 +187,7 @@ export default function TherapistCard({therapistProp}){
                     headers : {
                         'Content-Type' : 'application/json',
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                     }

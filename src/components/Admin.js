@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Collapse, Container, Form, ListGroup, Modal, ModalBody, ModalHeader, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import AppNavbar from "../components/AppNavbar";
-import PaginatedListGroup from "../components/PaginatedListGroup";
-import ReportItem from "../components/ReportItem";
+import AppNavbar from "./AppNavbar";
+import PaginatedListGroup from "./PaginatedListGroup";
+import ReportItem from "./ReportItem";
 
 function UserManagementItem({userProp}) {
 
@@ -41,7 +41,7 @@ function UserManagementItem({userProp}) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -92,7 +92,7 @@ function UserManagementItem({userProp}) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -153,7 +153,7 @@ function UserManagementItem({userProp}) {
                     headers : {
                         'Content-Type' : 'application/json',
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                     }
@@ -214,7 +214,7 @@ function UserManagementItem({userProp}) {
                     headers : {
                         'Content-Type' : 'application/json',
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                     }
@@ -514,7 +514,7 @@ function PostManagementItem({postProp}) {
                 headers : {
                     'Content-Type' : 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
                 },
@@ -535,7 +535,7 @@ function PostManagementItem({postProp}) {
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
         }
@@ -613,7 +613,7 @@ export default function Admin() {
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
         }
@@ -630,7 +630,7 @@ export default function Admin() {
         {method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
-                        "Access-Control-Allow-Origin" : "*",
+                        "Access-Control-Allow-Origin": "https://localhost:3000" || "https://oasis-black.vercel.app/" ,
                         "Access-Control-Allow-Credentials" : true,
                         "status" : 200
         }
