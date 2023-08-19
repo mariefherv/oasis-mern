@@ -3,7 +3,8 @@ import {
     Col,
     Container, Dropdown, Image,
     ListGroup,
-    Row
+    Row,
+    Spinner
 } from 'react-bootstrap';
 import DropdownItem from "react-bootstrap/DropdownItem";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
@@ -34,7 +35,7 @@ export default function Messaging() {
     const [last_name, setLastName] = useState('')
     const [suffix, setSuffix] = useState('')
 
-    // const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     
     useEffect(() => {
         fetch(`https://oasis-api-nocv.onrender.com/contact/viewAll`,
@@ -49,6 +50,7 @@ export default function Messaging() {
         )
         .then(res => res.json())
         .then(data => {
+            setLoading(false)
             setContacts(data.map(contact => {
                 return contact.status === 'ACTIVE' ?
                 <ContactItem key={contact.contact_id} contactProp= {contact} active = {activeContact.username}/>            
@@ -103,6 +105,11 @@ export default function Messaging() {
     return (
    
         <Container fluid>
+            {loading ?
+            <div className={"flex-grow-1 w-100 text-center mt-3 mb-0"}>
+                <Spinner/>
+            </div>
+            :
             <Row className='d-flex flex-row'>
                 <Col lg={2} className=''>
                     <AppNavbar/>
@@ -142,7 +149,7 @@ export default function Messaging() {
                     </Row>
                 </Col>
 
-            </Row>
+            </Row>}
         </Container>
     );
 }
